@@ -655,6 +655,7 @@ answers = "aback abase abate abbey abbot abhor abide abled abode abort about abo
 
 daily_mode = false;
 free_mode = false;
+restoring_game = false;
 
 function initDaily() {
     daily_mode = true;
@@ -662,6 +663,9 @@ function initDaily() {
     restart();
     acquire("title").style.display = "none";
     acquire("game").style.display = "flex";
+    if ("ga" in window) {
+        ga("send", "event", "daily", "start");
+    }
 }
 
 function initFree() {
@@ -670,13 +674,22 @@ function initFree() {
     restart();
     acquire("title").style.display = "none";
     acquire("game").style.display = "flex";
+    if ("ga" in window) {
+        ga("send", "event", "free", "start");
+    }
 }
 
 function backToTitle() {
+    mode_leaving = daily_mode ? "daily" : "free"
+    daily_mode = false;
+    free_mode = false;
     restart();
     acquire("title").style.display = "";
     acquire("game").style.display = "none";
     acquire("body").style.backgroundColor = "rgb(24, 26, 27)";
+    if ("ga" in window) {
+        ga("send", "event", mode_leaving, "back");
+    }
 }
 
 function pressKey(e) {
@@ -706,6 +719,9 @@ function pk(key, keyCode) {
             return;
         }
         if (column >= 5) {
+            if (!restoring_game && "ga" in window) {
+                ga("send", "event", daily_mode ? "daily" : "free", "guess", guess_current);
+            }
             guesses.push(guess_current);
             if (answer_correct[0] < 0) identify_guess(0, line, guess_current);
             if (answer_correct[1] < 0) identify_guess(1, line, guess_current);
@@ -732,10 +748,22 @@ function pk(key, keyCode) {
                 acquire("body").style.backgroundColor = "green";
                 acquire("body").style.color = "black";
                 show_post_game(true);
+                if (!restoring_game && "ga" in window) {
+                    ga("send", "event", daily_mode ? "daily" : "free", "win");
+                }
             } else if (line >= 9) {
                 acquire("body").style.backgroundColor = "red";
                 acquire("body").style.color = "black";
                 show_post_game(true);
+                if (!restoring_game && "ga" in window) {
+                    var totalCorrect = 0;
+                    for (var i = 0; i < answer_correct.length; i++) {
+                        if (answer_correct[i] >= 0) {
+                            totalCorrect++;
+                        }
+                    }
+                    ga("send", "event", daily_mode ? "daily" : "free", "loss", totalCorrect + "/" + answer_correct.length);
+                }
             }
 
             render_bg_keys();
@@ -902,11 +930,16 @@ function restart() {
             ls_guesses = window.localStorage.getItem("daily_guesses")
             ls_guesses = ls_guesses ? ls_guesses.split(",") : [];
             if (ls_guesses.length > 0) {
+                restoring_game = true
                 for (var i = 0; i < ls_guesses.length; i++) {
                     for (var j = 0; j < ls_guesses[i].length; j++) {
                         pk(ls_guesses[i][j], ls_guesses[i].charCodeAt(j))
                     }
                     pk("enter", 13)
+                }
+                restoring_game = false
+                if ("ga" in window) {
+                    ga("send", "event", "daily", "restore");
                 }
             }
         } catch (e) {
@@ -1055,6 +1088,9 @@ function do_share(discord, copy) {
         document.execCommand("copy");
     }
 
+    if ("ga" in window) {
+        ga("send", "event", daily_mode ? "daily" : "free", "share", discord ? "discord" : "normal");
+    }
 }
 
 function render_bg_keys() {
