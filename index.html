@@ -869,6 +869,9 @@ function restart() {
         share[3].push("\u2B1B\u2B1B\u2B1B\u2B1B\u2B1B");
     }
 
+    acquire("keyboard").style.display = "";
+    render_bg_keys();
+
     if (daily_mode && !no_localstorage) {
         try {
             ls_guesses = window.localStorage.getItem("daily_guesses")
@@ -885,12 +888,6 @@ function restart() {
             no_localstorage = true;
         }
     }
-
-    //acquire("share").style.display="none";
-    //acquire("share_discord").style.display="none";
-    //acquire("share_content").style.display = "none";
-    acquire("keyboard").style.display = "";
-    render_bg_keys();
 }
 
 
