@@ -4,7 +4,8 @@
 <style>
 body {
     font-family: 'Outfit', sans-serif;
-    background-color: white;
+    background-color: rgb(24, 26, 27);
+    color: white;
 }
 
 
@@ -20,13 +21,14 @@ body {
 }
 
 .box {
-    border: 1px solid;
+    border: white 1px solid;
 
     padding: 0px;
     text-align: center;
-    background-color: white;
+    background-color: rgb(24, 26, 27);
     overflow: hidden;
     border-spacing: var(--spacing);
+    color: white;
 
     user-select: none;
 
@@ -41,12 +43,45 @@ body {
 }
 
 
+/* var colorOptions = ["#919191", "#ffcc00", "#00cc88"] */
+
+.bg-quad {
+    color: black;
+    background-size: 50% 50%;
+    background-position: 0% 0%, 0% 100%, 100% 0%, 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.bg11 {
+    background-image: linear-gradient(45deg, #919191, #919191 100%), linear-gradient(135deg, #ffcc00, #ffcc00), linear-gradient(225deg, #00cc88, #00cc88), linear-gradient(225deg, #ffcc00, #ffcc00);
+}
+
+.bg22 {
+    background-image: linear-gradient(45deg, #919191, #919191 100%), linear-gradient(135deg, #919191, #919191), linear-gradient(225deg, #00cc88, #00cc88), linear-gradient(225deg, #00cc88, #00cc88);
+}
+
+.bg33 {
+    background-image: linear-gradient(45deg, #00cc88, #00cc88 100%), linear-gradient(135deg, #919191, #919191), linear-gradient(225deg, #ffcc00, #ffcc00), linear-gradient(225deg, #00cc88, #00cc88);
+}
+
+.bg44 {
+    background-image: linear-gradient(45deg, #919191, #919191 100%), linear-gradient(135deg, #ffcc00, #ffcc00), linear-gradient(225deg, #ffcc00, #ffcc00), linear-gradient(225deg, #919191, #919191);
+}
+
+.bg55 {
+    background-image: linear-gradient(45deg, #919191, #919191 100%), linear-gradient(135deg, #00cc88, #00cc88), linear-gradient(225deg, #919191, #919191), linear-gradient(225deg, #919191, #919191);
+}
+
+.bg66 {
+    background-image: linear-gradient(45deg, #919191, #919191 100%), linear-gradient(135deg, #919191, #919191), linear-gradient(225deg, #919191, #919191), linear-gradient(225deg, #ffcc00, #ffcc00);
+}
+
 .bg1 {
-    background-image: linear-gradient(to right, white, white 50%, #00cc88 50%, #00cc88);
+    background-image: linear-gradient(to right, rgb(24, 26, 27), rgb(24, 26, 27) 50%, #00cc88 50%, #00cc88);
 }
 
 .bg2 {
-    background-image: linear-gradient(to right, white, white 50%, #ffcc00 50%, #ffcc00);
+    background-image: linear-gradient(to right, rgb(24, 26, 27), rgb(24, 26, 27) 50%, #ffcc00 50%, #ffcc00);
 }
 
 .bg3 {
@@ -58,11 +93,11 @@ body {
 }
 
 .bg5 {
-    background-image: linear-gradient(to right, #ffcc00, #ffcc00 50%, white 50%, white);
+    background-image: linear-gradient(to right, #ffcc00, #ffcc00 50%, rgb(24, 26, 27) 50%, rgb(24, 26, 27));
 }
 
 .bg6 {
-    background-image: linear-gradient(to right, #00cc88, #00cc88 50%, white 50%, white);
+    background-image: linear-gradient(to right, #00cc88, #00cc88 50%, rgb(24, 26, 27) 50%, rgb(24, 26, 27));
 }
 
 table {
@@ -76,19 +111,20 @@ table {
 </style>
 
 <body>
-<div id="body" style=" max-width: 550px;">
+<div id="body" style=" max-width: 550px;margin: auto">
     <div id="title" width="100%" style="">
         <center>
             <div class="button">&nbsp;</div>
-            <div style="width: 50%;">
+            <div style="width: 67%;">
                 <table style="width:100%;">
                     <tr>
-                        <td class="box button bg1" style="width:16.6%">D</td>
-                        <td class="box button bg3" style="width:16.6%">O</td>
-                        <td class="box button bg2" style="width:16.6%">R</td>
-                        <td class="box button bg6" style="width:16.6%">D</td>
-                        <td class="box button bg5" style="width:16.6%">L</td>
-                        <td class="box button bg4" style="width:16.6%">E</td>
+                        <td class="box button bg-quad bg11" style="width:14.3%">Q</td>
+                        <td class="box button bg-quad bg55" style="width:14.3%">U</td>
+                        <td class="box button bg-quad bg33" style="width:14.3%">O</td>
+                        <td class="box button bg-quad bg22" style="width:14.3%">R</td>
+                        <td class="box button bg-quad bg66" style="width:14.3%">D</td>
+                        <td class="box button bg-quad bg55" style="width:14.3%">L</td>
+                        <td class="box button bg-quad bg44" style="width:14.3%">E</td>
                     </tr>
                 </table>
             </div>
@@ -96,15 +132,15 @@ table {
                 <table style="width:100%;">
                     <tr>
                         <td style="width:50%; text-align:right;">&copy;2022</td>
-                        <td style="width:50%;">Guilherme S. T&ouml;ws</td>
+                        <td style="width:50%;">Freddie</td>
                     </tr>
                 </table>
             </div>
             <div style="font-size:50%;">
                 <table style="width:100%;">
                     <tr>
-                        <td style="width:50%; text-align:right;">based on <a href="https://www.powerlanguage.co.uk/wordle/">Wordle</a></td>
-                        <td style="width:50%;">by Josh Wardle</td>
+                        <td style="width:50%; text-align:right;">based on <a href="https://zaratustra.itch.io/dordle">Dordle</a></td>
+                        <td style="width:50%;">by Guilherme S. Töws</td>
                     </tr>
                 </table>
             </div>
@@ -113,15 +149,15 @@ table {
                 <table style="width:100%;">
                     <tr>
                         <td style="width:50%; text-align:right;">daily</td>
-                        <td style="width:50%;">dordle</td>
+                        <td style="width:50%; color:black;">quordle</td>
                     </tr>
                 </table>
             </div>
             <div style="height:8px;">&nbsp;</div>
             <div class="bg3" style="font-size:80%;">
-                <table style="width:100%;">
+                <table style="width:100%; color:black;">
                     <tr>
-                        <td style="width:50%; text-align:right;">a new dordle</td>
+                        <td style="width:50%; text-align:right;">a new quordle</td>
                         <td style="width:50%;">each day</td>
                     </tr>
                     <tr>
@@ -134,20 +170,20 @@ table {
             <div class="box bg5" style="width: 60%; border:double;" id="free">
                 <table style="width:100%;">
                     <tr>
-                        <td style="width:50%; text-align:right;">free</td>
-                        <td style="width:50%;">dordle</td>
+                        <td style="width:50%; text-align:right; color:black;">free</td>
+                        <td style="width:50%;">quordle</td>
                     </tr>
                 </table>
             </div>
             <div style="height:8px;">&nbsp;</div>
             <div class="bg4" style="font-size:80%;">
-                <table style="width:100%;">
+                <table style="width:100%; color:black;">
                     <tr>
                         <td style="width:50%; text-align:right;">play as much</td>
                         <td style="width:50%;">as you want</td>
                     </tr>
                     <tr>
-                        <td style="text-align:right;">every dordle</td>
+                        <td style="text-align:right;">every quordle</td>
                         <td>is a surprise</td>
                     </tr>
                 </table>
@@ -451,40 +487,40 @@ table {
         </div>
         <table id="keyboard" style="width: 100%; max-width: 550px;" class="table_guesses">
             <tr>
-                <td class="box button" width="10%" id="q">Q</td>
-                <td class="box button" width="10%" id="w">W</td>
-                <td class="box button" width="10%" id="e">E</td>
-                <td class="box button" width="10%" id="r">R</td>
-                <td class="box button" width="10%" id="t">T</td>
-                <td class="box button" width="10%" id="y">Y</td>
-                <td class="box button" width="10%" id="u">U</td>
-                <td class="box button" width="10%" id="i">I</td>
-                <td class="box button" width="10%" id="o">O</td>
-                <td class="box button" width="10%" id="p">P</td>
+                <td class="box button key" width="10%" id="q">Q</td>
+                <td class="box button key" width="10%" id="w">W</td>
+                <td class="box button key" width="10%" id="e">E</td>
+                <td class="box button key" width="10%" id="r">R</td>
+                <td class="box button key" width="10%" id="t">T</td>
+                <td class="box button key" width="10%" id="y">Y</td>
+                <td class="box button key" width="10%" id="u">U</td>
+                <td class="box button key" width="10%" id="i">I</td>
+                <td class="box button key" width="10%" id="o">O</td>
+                <td class="box button key" width="10%" id="p">P</td>
             </tr>
             <tr>
-                <td class="box button" width="10%" id="a">A</td>
-                <td class="box button" width="10%" id="s">S</td>
-                <td class="box button" width="10%" id="d">D</td>
-                <td class="box button" width="10%" id="f">F</td>
-                <td class="box button" width="10%" id="g">G</td>
-                <td class="box button" width="10%" id="h">H</td>
-                <td class="box button" width="10%" id="j">J</td>
-                <td class="box button" width="10%" id="k">K</td>
-                <td class="box button" width="10%" id="l">L</td>
-                <td class="box button" style="border-bottom:none;" width="10%" id="enter3"></td>
+                <td class="box button key" width="10%" id="a">A</td>
+                <td class="box button key" width="10%" id="s">S</td>
+                <td class="box button key" width="10%" id="d">D</td>
+                <td class="box button key" width="10%" id="f">F</td>
+                <td class="box button key" width="10%" id="g">G</td>
+                <td class="box button key" width="10%" id="h">H</td>
+                <td class="box button key" width="10%" id="j">J</td>
+                <td class="box button key" width="10%" id="k">K</td>
+                <td class="box button key" width="10%" id="l">L</td>
+                <td class="box button key" style="border-bottom:none;" width="10%" id="enter3"></td>
             </tr>
             <tr>
-                <td class="box button" width="10%" id="bs">&#x232B;</td>
-                <td class="box button" width="10%" id="z">Z</td>
-                <td class="box button" width="10%" id="x">X</td>
-                <td class="box button" width="10%" id="c">C</td>
-                <td class="box button" width="10%" id="v">V</td>
-                <td class="box button" width="10%" id="b">B</td>
-                <td class="box button" width="10%" id="n">N</td>
-                <td class="box button" width="10%" id="m">M</td>
-                <td class="box button" style="border-right: none;" width="10%" id="enter1"></td>
-                <td class="box button" style="border-left: none; border-top:none;" width="10%" id="enter2">&#x23CE;</td>
+                <td class="box button key" width="10%" id="bs">&#x232B;</td>
+                <td class="box button key" width="10%" id="z">Z</td>
+                <td class="box button key" width="10%" id="x">X</td>
+                <td class="box button key" width="10%" id="c">C</td>
+                <td class="box button key" width="10%" id="v">V</td>
+                <td class="box button key" width="10%" id="b">B</td>
+                <td class="box button key" width="10%" id="n">N</td>
+                <td class="box button key" width="10%" id="m">M</td>
+                <td class="box button key" style="border-right: none;" width="10%" id="enter1"></td>
+                <td class="box button key" style="border-left: none; border-top:none;" width="10%" id="enter2">&#x23CE;</td>
             </tr>
         </table>
     </div>
@@ -666,9 +702,11 @@ function pk(key, keyCode) {
 
             if (answer_correct[0] >= 0 && answer_correct[1] >= 0 && answer_correct[2] >= 0 && answer_correct[3] >= 0) {
                 acquire("body").style.backgroundColor = "green";
+                acquire("body").style.color = "black";
                 show_post_game(true);
             } else if (line >= 9) {
                 acquire("body").style.backgroundColor = "red";
+                acquire("body").style.color = "black";
                 show_post_game(true);
             }
 
@@ -707,10 +745,10 @@ function test_real_word(line, guess_current) {
     if (guess_current.length < 5) real = true;
     console.log(real);
     for (var column = 0; column < 5; column++) {
-        if (answer_correct[0] < 0) acquire("box1," + (line + 1) + "," + (column + 1)).style.color = real ? "black" : "red";
-        if (answer_correct[1] < 0) acquire("box2," + (line + 1) + "," + (column + 1)).style.color = real ? "black" : "red";
-        if (answer_correct[2] < 0) acquire("box3," + (line + 1) + "," + (column + 1)).style.color = real ? "black" : "red";
-        if (answer_correct[3] < 0) acquire("box4," + (line + 1) + "," + (column + 1)).style.color = real ? "black" : "red";
+        if (answer_correct[0] < 0) acquire("box1," + (line + 1) + "," + (column + 1)).style.color = real ? "white" : "red";
+        if (answer_correct[1] < 0) acquire("box2," + (line + 1) + "," + (column + 1)).style.color = real ? "white" : "red";
+        if (answer_correct[2] < 0) acquire("box3," + (line + 1) + "," + (column + 1)).style.color = real ? "white" : "red";
+        if (answer_correct[3] < 0) acquire("box4," + (line + 1) + "," + (column + 1)).style.color = real ? "white" : "red";
     }
 
 }
@@ -764,7 +802,7 @@ setInterval(setTimeToNext, 1000);
 setTimeToNext();
 
 function restart() {
-    acquire("body").style.backgroundColor = "white";
+    acquire("body").style.backgroundColor = "rgb(24, 26, 27)";
 
     show_post_game(false);
 
@@ -773,7 +811,7 @@ function restart() {
         var startDate = (new Date('01/24/2022'));
         seed = ((date.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) >> 0;
 
-        printclear(acquire("game_title"), "daily dordle #" + seed.toString(10).padStart(4, "0"));
+        printclear(acquire("game_title"), "daily quordle #" + seed.toString(10).padStart(4, "0"));
         console.log(seed.toString(10));
         last_daily = seed;
         if (!no_localstorage) {
@@ -786,7 +824,7 @@ function restart() {
         rnd = new MersenneTwister(seed);
     } else if (free_mode) {
         rnd = new MersenneTwister();
-        printclear(acquire("game_title"), "free dordle");
+        printclear(acquire("game_title"), "free quordle");
     }
     rnd.genrand_int31();
     rnd.genrand_int31();
@@ -837,17 +875,17 @@ function clear_line(line) {
     for (var column = 0; column < 5; column++) {
         console.log("box1," + (line + 1) + "," + (column + 1))
         clear(acquire("box1," + (line + 1) + "," + (column + 1)), "");
-        acquire("box1," + (line + 1) + "," + (column + 1)).style.color = "black";
-        acquire("box1," + (line + 1) + "," + (column + 1)).style.backgroundColor = "white";
+        acquire("box1," + (line + 1) + "," + (column + 1)).style.color = "white";
+        acquire("box1," + (line + 1) + "," + (column + 1)).style.backgroundColor = "rgb(24, 26, 27)";
         clear(acquire("box2," + (line + 1) + "," + (column + 1)), "");
-        acquire("box2," + (line + 1) + "," + (column + 1)).style.color = "black";
-        acquire("box2," + (line + 1) + "," + (column + 1)).style.backgroundColor = "white";
+        acquire("box2," + (line + 1) + "," + (column + 1)).style.color = "white";
+        acquire("box2," + (line + 1) + "," + (column + 1)).style.backgroundColor = "rgb(24, 26, 27)";
         clear(acquire("box3," + (line + 1) + "," + (column + 1)), "");
-        acquire("box3," + (line + 1) + "," + (column + 1)).style.color = "black";
-        acquire("box3," + (line + 1) + "," + (column + 1)).style.backgroundColor = "white";
+        acquire("box3," + (line + 1) + "," + (column + 1)).style.color = "white";
+        acquire("box3," + (line + 1) + "," + (column + 1)).style.backgroundColor = "rgb(24, 26, 27)";
         clear(acquire("box4," + (line + 1) + "," + (column + 1)), "");
-        acquire("box4," + (line + 1) + "," + (column + 1)).style.color = "black";
-        acquire("box4," + (line + 1) + "," + (column + 1)).style.backgroundColor = "white";
+        acquire("box4," + (line + 1) + "," + (column + 1)).style.color = "white";
+        acquire("box4," + (line + 1) + "," + (column + 1)).style.backgroundColor = "rgb(24, 26, 27)";
     }
 }
 
@@ -857,12 +895,14 @@ function identify_guess(i, line, guess) {
     var icons = [];
     for (column = 0; column < 5; column++) {
         guess_letters[i][gue[column]] = 0;
-        acquire("box" + (i + 1) + "," + (line + 1) + "," + (column + 1)).style.backgroundColor = "white";
+        acquire("box" + (i + 1) + "," + (line + 1) + "," + (column + 1)).style.backgroundColor = "rgb(24, 26, 27)";
         icons.push('\u2B1C');
     }
     for (column = 0; column < 5; column++) {
         if (ans[column] == gue[column]) {
-            acquire("box" + (i + 1) + "," + (line + 1) + "," + (column + 1)).style.backgroundColor = "#00cc88";
+            var b = acquire("box" + (i + 1) + "," + (line + 1) + "," + (column + 1))
+            b.style.backgroundColor = "#00cc88";
+            b.style.color = "black";
             ans[column] = " ";
             guess_letters[i][gue[column]] = 2;
             gue[column] = " ";
@@ -871,7 +911,9 @@ function identify_guess(i, line, guess) {
     }
     for (column = 0; column < 5; column++) {
         if (ans.indexOf(gue[column]) != -1 && ans[column] != gue[column] && gue[column] != " ") {
-            acquire("box" + (i + 1) + "," + (line + 1) + "," + (column + 1)).style.backgroundColor = "#ffcc00";
+            var b = acquire("box" + (i + 1) + "," + (line + 1) + "," + (column + 1))
+            b.style.backgroundColor = "#ffcc00";
+            b.style.color = "black";
             if (guess_letters[i][gue[column]] != 2) guess_letters[i][gue[column]] = 1;
             ans[ans.indexOf(gue[column])] = " ";
             icons[column] = ("\uD83D\uDFE8");
@@ -919,13 +961,13 @@ function do_share(discord, copy) {
     printclear(acquire("answer"), real_answer);
 
     if (daily_mode) {
-        text_share = "Daily Dordle #" + seed.toString(10).padStart(4, "0") + " " +
+        text_share = "Daily Quordle #" + seed.toString(10).padStart(4, "0") + " " +
             (answer_correct[0] >= 0 ? (answer_correct[0] + 1) : "X") + "&" +
             (answer_correct[1] >= 0 ? (answer_correct[1] + 1) : "X") + "&" +
             (answer_correct[2] >= 0 ? (answer_correct[2] + 1) : "X") + "&" +
             (answer_correct[3] >= 0 ? (answer_correct[3] + 1) : "X") + "/9 ";
     } else {
-        text_share = "Dordle " +
+        text_share = "Quordle " +
             (answer_correct[0] >= 0 ? (answer_correct[0] + 1) : "X") + "&" +
             (answer_correct[1] >= 0 ? (answer_correct[1] + 1) : "X") + "&" +
             (answer_correct[2] >= 0 ? (answer_correct[2] + 1) : "X") + "&" +
@@ -935,14 +977,18 @@ function do_share(discord, copy) {
 
     text_share += "\n";
 
-    var l = line - 1;
-    if (answer_correct[0] >= 0 && answer_correct[1] >= 0 && answer_correct[2] >= 0 && answer_correct[3] >= 0) {
-        l = Math.max(answer_correct[0], answer_correct[1], answer_correct[2], answer_correct[3])
+    var l1 = line - 1;
+    if (answer_correct[0] >= 0 && answer_correct[1] >= 0 ) {
+        l1 = Math.max(answer_correct[0], answer_correct[1])
     }
-    for (var i = 0; i <= l; i++) {
+    var l2 = line - 1;
+    if (answer_correct[2] >= 0 && answer_correct[3] >= 0) {
+        l = Math.max(answer_correct[2], answer_correct[3])
+    }
+    for (var i = 0; i <= l1; i++) {
         text_share += share[0][i] + " " + share[1][i] + ((discord) ? (" ||`" + guesses[i].toUpperCase() + "`||") : "") + "\n";
     }
-    for (var i = 0; i <= l; i++) {
+    for (var i = 0; i <= l2; i++) {
         text_share += share[2][i] + " " + share[3][i] + ((discord) ? (" ||`" + guesses[i].toUpperCase() + "`||") : "") + "\n";
     }
     text_share += discord ? "<https://fireph.github.io/nordle>" : "fireph.github.io/nordle";
@@ -964,28 +1010,25 @@ function render_bg_keys() {
     if (answer_correct[1] < 0 && answer_correct[0] >= 0) pos = " 10%";
 
     for (k in keys) {
-        var topLeft = "white";
-        var topRight = "white";
-        var bottomLeft = "white";
-        var bottomRight = "white";
-        if (guess_letters[0][keys[k]] == 0) topLeft = "#808080";
-        if (guess_letters[0][keys[k]] == 1) topLeft = "#ffcc00";
-        if (guess_letters[0][keys[k]] == 2) topLeft = "#00cc88";
-        if (guess_letters[1][keys[k]] == 0) topRight = "#808080";
-        if (guess_letters[1][keys[k]] == 1) topRight = "#ffcc00";
-        if (guess_letters[1][keys[k]] == 2) topRight = "#00cc88";
-        if (guess_letters[2][keys[k]] == 0) bottomLeft = "#808080";
-        if (guess_letters[2][keys[k]] == 1) bottomLeft = "#ffcc00";
-        if (guess_letters[2][keys[k]] == 2) bottomLeft = "#00cc88";
-        if (guess_letters[3][keys[k]] == 0) bottomRight = "#808080";
-        if (guess_letters[3][keys[k]] == 1) bottomRight = "#ffcc00";
-        if (guess_letters[3][keys[k]] == 2) bottomRight = "#00cc88";
-        var bg = "linear-gradient(45deg, " + topLeft + ", " + topLeft + " 100%), linear-gradient(135deg, " + bottomLeft + ", " + bottomLeft + "), linear-gradient(225deg, " + topRight + ", " + topRight + ") , linear-gradient(225deg, " + bottomRight + ", " + bottomRight + ")"
+        var keyGuessed = false
+        var keyColors = ["rgb(24, 26, 27)", "rgb(24, 26, 27)", "rgb(24, 26, 27)", "rgb(24, 26, 27)"]
+        var colorOptions = ["#919191", "#ffcc00", "#00cc88"]
+        for (var g = 0; g < keyColors.length; g++) {
+            for (var i = 0; i < colorOptions.length; i++) {
+                if (guess_letters[g][keys[k]] == i) {
+                    keyColors[g] = colorOptions[i]
+                    keyGuessed = true
+                }
+            }
+        }
+        var bg = "linear-gradient(45deg, " + keyColors[0] + ", " + keyColors[0] + " 100%), linear-gradient(135deg, " + keyColors[2] + ", " + keyColors[2] + "), linear-gradient(225deg, " + keyColors[1] + ", " + keyColors[1] + ") , linear-gradient(225deg, " + keyColors[3] + ", " + keyColors[3] + ")"
         var key = acquire(keys[k])
         key.style.backgroundImage = bg
         key.style.backgroundSize = "50% 50%"
         key.style.backgroundPosition = "0% 0%, 0% 100%, 100% 0%, 100% 100%"
         key.style.backgroundRepeat = "no-repeat"
+        key.style.color = keyGuessed ? "black" : "white"
+        key.style.textShadow = keyGuessed ? "0 0 4px white" : ""
     }
 }
 
