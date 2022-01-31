@@ -1020,7 +1020,7 @@ function do_share(discord, copy) {
     for (var i = 0; i <= l2; i++) {
         text_share += share[2][i] + " " + share[3][i] + ((discord) ? (" ||`" + guesses[i].toUpperCase() + "`||") : "") + "\n";
     }
-    text_share += discord ? "<https://fireph.github.io/nordle>" : "fireph.github.io/nordle";
+    text_share += discord ? "<https://fireph.github.io/quordle>" : "fireph.github.io/quordle";
     if (!discord) text_share = text_share.replaceAll("||", "").replaceAll("`", "");
     printclear(acquire("share_content"), text_share);
 
