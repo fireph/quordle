@@ -652,12 +652,11 @@ function backToTitle() {
 }
 
 function pressKey(e) {
-    pk(e.key.toLowerCase(), e.keyCode);
+    pk_wrap(e.key.toLowerCase(), e.keyCode);
 }
 
 function pk(key, keyCode) {
     if (line >= 9) return;
-    console.log(key, keyCode);
     if (keyCode == 8) {
         if (column <= 0) return;
         guess_current = guess_current.slice(0, guess_current.length - 1);
@@ -722,10 +721,16 @@ function pk(key, keyCode) {
     if (answer_correct[2] < 0) ppint(acquire("box3," + (line + 1) + "," + (column + 1)), key.toUpperCase());
     if (answer_correct[3] < 0) ppint(acquire("box4," + (line + 1) + "," + (column + 1)), key.toUpperCase());
     guess_current += key;
-    console.log(guess_current);
     column++;
     if (column >= 5) {
         test_real_word(line, guess_current);
+    }
+}
+
+function pk_wrap(key, keyCode) {
+    pk(key, keyCode);
+    if (keyCode === 13) {
+        update_local_storage();
     }
 }
 
@@ -743,14 +748,12 @@ function show_post_game(show) {
 function test_real_word(line, guess_current) {
     var real = !(allowed.indexOf(guess_current) == -1 && answers.indexOf(guess_current) == -1)
     if (guess_current.length < 5) real = true;
-    console.log(real);
     for (var column = 0; column < 5; column++) {
         if (answer_correct[0] < 0) acquire("box1," + (line + 1) + "," + (column + 1)).style.color = real ? "white" : "red";
         if (answer_correct[1] < 0) acquire("box2," + (line + 1) + "," + (column + 1)).style.color = real ? "white" : "red";
         if (answer_correct[2] < 0) acquire("box3," + (line + 1) + "," + (column + 1)).style.color = real ? "white" : "red";
         if (answer_correct[3] < 0) acquire("box4," + (line + 1) + "," + (column + 1)).style.color = real ? "white" : "red";
     }
-
 }
 
 last_daily = null;
@@ -812,11 +815,14 @@ function restart() {
         seed = ((date.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) >> 0;
 
         printclear(acquire("game_title"), "daily quordle #" + seed.toString(10).padStart(4, "0"));
-        console.log(seed.toString(10));
         last_daily = seed;
         if (!no_localstorage) {
             try {
+                var prevDaily = window.localStorage.getItem("last_daily");
                 window.localStorage.setItem("last_daily", seed);
+                if (String(seed) !== prevDaily) {
+                    window.localStorage.setItem("daily_guesses", "");
+                }
             } catch (e) {
                 no_localstorage = true;
             }
@@ -848,17 +854,8 @@ function restart() {
     guesses = [];
     guess_letters = [{}, {}, {}, {}];
     answer_correct = [-1, -1, -1, -1];
-    share = [
-        [],
-        [],
-        [],
-        []
-    ];
+    share = [[], [], [], []];
     guess_current = "";
-    //acquire("share").style.display="none";
-    //acquire("share_discord").style.display="none";
-    //acquire("share_content").style.display = "none";
-    acquire("keyboard").style.display = "";
 
     for (var l = 0; l < 9; l++) {
         clear_line(l);
@@ -867,13 +864,45 @@ function restart() {
         share[2].push("\u2B1B\u2B1B\u2B1B\u2B1B\u2B1B");
         share[3].push("\u2B1B\u2B1B\u2B1B\u2B1B\u2B1B");
     }
+
+    if (daily_mode && !no_localstorage) {
+        try {
+            ls_guesses = window.localStorage.getItem("daily_guesses")
+            ls_guesses = ls_guesses ? ls_guesses.split(",") : [];
+            if (ls_guesses.length > 0) {
+                for (var i = 0; i < ls_guesses.length; i++) {
+                    for (var j = 0; j < ls_guesses[i].length; j++) {
+                        pk(ls_guesses[i][j], ls_guesses[i].charCodeAt(j))
+                    }
+                    pk("enter", 13)
+                }
+            }
+        } catch (e) {
+            no_localstorage = true;
+        }
+    }
+
+    //acquire("share").style.display="none";
+    //acquire("share_discord").style.display="none";
+    //acquire("share_content").style.display = "none";
+    acquire("keyboard").style.display = "";
     render_bg_keys();
+}
+
+
+function update_local_storage() {
+    if (!no_localstorage) {
+        try {
+            window.localStorage.setItem("daily_guesses", guesses.join(","));
+        } catch (e) {
+            no_localstorage = true;
+        }
+    }
 }
 
 
 function clear_line(line) {
     for (var column = 0; column < 5; column++) {
-        console.log("box1," + (line + 1) + "," + (column + 1))
         clear(acquire("box1," + (line + 1) + "," + (column + 1)), "");
         acquire("box1," + (line + 1) + "," + (column + 1)).style.color = "white";
         acquire("box1," + (line + 1) + "," + (column + 1)).style.backgroundColor = "rgb(24, 26, 27)";
@@ -928,23 +957,23 @@ for (k in keys) {
     var acq = acquire(keys[k]);
     acq.key = keys[k];
     acq.onclick = function() {
-        pk(this.key, 0);
+        pk_wrap(this.key, 0);
     }
 }
 acquire("daily").onclick = initDaily
 acquire("free").onclick = initFree
 
 acquire("enter1").onclick = function() {
-    pk("", 13);
+    pk_wrap("", 13);
 }
 acquire("enter2").onclick = function() {
-    pk("", 13);
+    pk_wrap("", 13);
 }
 acquire("enter3").onclick = function() {
-    pk("", 13);
+    pk_wrap("", 13);
 }
 acquire("bs").onclick = function() {
-    pk("", 8);
+    pk_wrap("", 8);
 }
 acquire("restart").onclick = function() {
     backToTitle();
@@ -1036,7 +1065,6 @@ document.addEventListener('keydown', pressKey);
 
 window.onresize = function() {
     var body = acquire("body");
-    console.log(body.clientWidth);
     body.style.fontSize = body.clientWidth / 15 + "px";
     acquire("share_content").style.fontSize = (body.clientWidth / 550 * 30) + "%";
     document.documentElement.style.setProperty('--boxsize', (body.clientWidth / 11) + 'px');
