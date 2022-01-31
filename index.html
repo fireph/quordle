@@ -892,7 +892,7 @@ function restart() {
 
 
 function update_local_storage() {
-    if (!no_localstorage) {
+    if (!no_localstorage && daily_mode) {
         try {
             window.localStorage.setItem("daily_guesses", guesses.join(","));
         } catch (e) {
