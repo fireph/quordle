@@ -663,7 +663,7 @@ function initDaily() {
     restart();
     acquire("title").style.display = "none";
     acquire("game").style.display = "flex";
-    if ("ga" in window) {
+    if (window.ga && ga.loaded) {
         ga("send", "event", "daily", "start");
     }
 }
@@ -674,7 +674,7 @@ function initFree() {
     restart();
     acquire("title").style.display = "none";
     acquire("game").style.display = "flex";
-    if ("ga" in window) {
+    if (window.ga && ga.loaded) {
         ga("send", "event", "free", "start");
     }
 }
@@ -687,7 +687,7 @@ function backToTitle() {
     acquire("title").style.display = "";
     acquire("game").style.display = "none";
     acquire("body").style.backgroundColor = "rgb(24, 26, 27)";
-    if ("ga" in window) {
+    if (window.ga && ga.loaded) {
         ga("send", "event", mode_leaving, "back");
     }
 }
@@ -719,7 +719,7 @@ function pk(key, keyCode) {
             return;
         }
         if (column >= 5) {
-            if (!restoring_game && "ga" in window) {
+            if (!restoring_game && window.ga && ga.loaded) {
                 ga("send", "event", daily_mode ? "daily" : "free", "guess", guess_current);
             }
             guesses.push(guess_current);
@@ -748,14 +748,14 @@ function pk(key, keyCode) {
                 acquire("body").style.backgroundColor = "green";
                 acquire("body").style.color = "black";
                 show_post_game(true);
-                if (!restoring_game && "ga" in window) {
+                if (!restoring_game && window.ga && ga.loaded) {
                     ga("send", "event", daily_mode ? "daily" : "free", "win");
                 }
             } else if (line >= 9) {
                 acquire("body").style.backgroundColor = "red";
                 acquire("body").style.color = "black";
                 show_post_game(true);
-                if (!restoring_game && "ga" in window) {
+                if (!restoring_game && window.ga && ga.loaded) {
                     var totalCorrect = 0;
                     for (var i = 0; i < answer_correct.length; i++) {
                         if (answer_correct[i] >= 0) {
@@ -938,7 +938,7 @@ function restart() {
                     pk("enter", 13)
                 }
                 restoring_game = false
-                if ("ga" in window) {
+                if (window.ga && ga.loaded) {
                     ga("send", "event", "daily", "restore");
                 }
             }
@@ -1088,7 +1088,7 @@ function do_share(discord, copy) {
         document.execCommand("copy");
     }
 
-    if ("ga" in window) {
+    if (window.ga && ga.loaded) {
         ga("send", "event", daily_mode ? "daily" : "free", "share", discord ? "discord" : "normal");
     }
 }
