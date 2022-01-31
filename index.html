@@ -2,6 +2,7 @@
 <head>
 <title>Quordle</title>
 <meta name="viewport" content="width=device-width, user-scalable=no">
+<meta name=color-scheme content="dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap" rel="stylesheet">
@@ -667,6 +668,7 @@ function pressKey(e) {
 }
 
 function pk(key, keyCode) {
+    if (!daily_mode && !free_mode) return;
     if (line >= 9) return;
     if (keyCode == 8) {
         if (column <= 0) return;
