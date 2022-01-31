@@ -115,8 +115,8 @@ table {
 </style>
 </head>
 <body>
-<div id="body" style=" max-width: 550px;margin: auto">
-    <div id="title" width="100%" style="">
+<div id="body" style="max-width:550px;margin:auto;height:100%;display:flex">
+    <div id="title" width="100%" style="margin:auto;">
         <center>
             <div class="button">&nbsp;</div>
             <div style="width: 67%;">
@@ -194,287 +194,289 @@ table {
             </div>
         </center>
     </div>
-    <div id="game" style="display: none;" width="100%">
+    <div id="game" style="display: none;flex-direction: column;" width="100%">
         <table style="width: 100%;">
             <tr>
                 <td class="box" style="border: none; border-style: double; width:35%;" id="restart">back</td>
                 <td style="width:*; text-align:center;" id="game_title"></td>
             </tr>
         </table>
-        <table style="width: 100%; border-spacing:0px;">
-            <tr>
-                <td style="width: 50%; padding:0px;">
-                    <table style="width: 100%;" class="table_guesses">
-                        <tr>
-                            <td class="box button" width="20%" id="box1,1,1"></td>
-                            <td class="box button" width="20%" id="box1,1,2"></td>
-                            <td class="box button" width="20%" id="box1,1,3"></td>
-                            <td class="box button" width="20%" id="box1,1,4"></td>
-                            <td class="box button" width="20%" id="box1,1,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box1,2,1"></td>
-                            <td class="box button" width="20%" id="box1,2,2"></td>
-                            <td class="box button" width="20%" id="box1,2,3"></td>
-                            <td class="box button" width="20%" id="box1,2,4"></td>
-                            <td class="box button" width="20%" id="box1,2,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box1,3,1"></td>
-                            <td class="box button" width="20%" id="box1,3,2"></td>
-                            <td class="box button" width="20%" id="box1,3,3"></td>
-                            <td class="box button" width="20%" id="box1,3,4"></td>
-                            <td class="box button" width="20%" id="box1,3,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box1,4,1"></td>
-                            <td class="box button" width="20%" id="box1,4,2"></td>
-                            <td class="box button" width="20%" id="box1,4,3"></td>
-                            <td class="box button" width="20%" id="box1,4,4"></td>
-                            <td class="box button" width="20%" id="box1,4,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box1,5,1"></td>
-                            <td class="box button" width="20%" id="box1,5,2"></td>
-                            <td class="box button" width="20%" id="box1,5,3"></td>
-                            <td class="box button" width="20%" id="box1,5,4"></td>
-                            <td class="box button" width="20%" id="box1,5,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box1,6,1"></td>
-                            <td class="box button" width="20%" id="box1,6,2"></td>
-                            <td class="box button" width="20%" id="box1,6,3"></td>
-                            <td class="box button" width="20%" id="box1,6,4"></td>
-                            <td class="box button" width="20%" id="box1,6,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box1,7,1"></td>
-                            <td class="box button" width="20%" id="box1,7,2"></td>
-                            <td class="box button" width="20%" id="box1,7,3"></td>
-                            <td class="box button" width="20%" id="box1,7,4"></td>
-                            <td class="box button" width="20%" id="box1,7,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box1,8,1"></td>
-                            <td class="box button" width="20%" id="box1,8,2"></td>
-                            <td class="box button" width="20%" id="box1,8,3"></td>
-                            <td class="box button" width="20%" id="box1,8,4"></td>
-                            <td class="box button" width="20%" id="box1,8,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box1,9,1"></td>
-                            <td class="box button" width="20%" id="box1,9,2"></td>
-                            <td class="box button" width="20%" id="box1,9,3"></td>
-                            <td class="box button" width="20%" id="box1,9,4"></td>
-                            <td class="box button" width="20%" id="box1,9,5"></td>
-                        </tr>
-                    </table>
-                </td>
-                <td style="width: 50%; padding:0px;">
-                    <table style="width: 100%;" class="table_guesses">
-                        <tr>
-                            <td class="box button" width="20%" id="box2,1,1"></td>
-                            <td class="box button" width="20%" id="box2,1,2"></td>
-                            <td class="box button" width="20%" id="box2,1,3"></td>
-                            <td class="box button" width="20%" id="box2,1,4"></td>
-                            <td class="box button" width="20%" id="box2,1,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box2,2,1"></td>
-                            <td class="box button" width="20%" id="box2,2,2"></td>
-                            <td class="box button" width="20%" id="box2,2,3"></td>
-                            <td class="box button" width="20%" id="box2,2,4"></td>
-                            <td class="box button" width="20%" id="box2,2,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box2,3,1"></td>
-                            <td class="box button" width="20%" id="box2,3,2"></td>
-                            <td class="box button" width="20%" id="box2,3,3"></td>
-                            <td class="box button" width="20%" id="box2,3,4"></td>
-                            <td class="box button" width="20%" id="box2,3,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box2,4,1"></td>
-                            <td class="box button" width="20%" id="box2,4,2"></td>
-                            <td class="box button" width="20%" id="box2,4,3"></td>
-                            <td class="box button" width="20%" id="box2,4,4"></td>
-                            <td class="box button" width="20%" id="box2,4,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box2,5,1"></td>
-                            <td class="box button" width="20%" id="box2,5,2"></td>
-                            <td class="box button" width="20%" id="box2,5,3"></td>
-                            <td class="box button" width="20%" id="box2,5,4"></td>
-                            <td class="box button" width="20%" id="box2,5,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box2,6,1"></td>
-                            <td class="box button" width="20%" id="box2,6,2"></td>
-                            <td class="box button" width="20%" id="box2,6,3"></td>
-                            <td class="box button" width="20%" id="box2,6,4"></td>
-                            <td class="box button" width="20%" id="box2,6,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box2,7,1"></td>
-                            <td class="box button" width="20%" id="box2,7,2"></td>
-                            <td class="box button" width="20%" id="box2,7,3"></td>
-                            <td class="box button" width="20%" id="box2,7,4"></td>
-                            <td class="box button" width="20%" id="box2,7,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box2,8,1"></td>
-                            <td class="box button" width="20%" id="box2,8,2"></td>
-                            <td class="box button" width="20%" id="box2,8,3"></td>
-                            <td class="box button" width="20%" id="box2,8,4"></td>
-                            <td class="box button" width="20%" id="box2,8,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box2,9,1"></td>
-                            <td class="box button" width="20%" id="box2,9,2"></td>
-                            <td class="box button" width="20%" id="box2,9,3"></td>
-                            <td class="box button" width="20%" id="box2,9,4"></td>
-                            <td class="box button" width="20%" id="box2,9,5"></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 50%; padding:0px;">
-                    <table style="width: 100%;" class="table_guesses">
-                        <tr>
-                            <td class="box button" width="20%" id="box3,1,1"></td>
-                            <td class="box button" width="20%" id="box3,1,2"></td>
-                            <td class="box button" width="20%" id="box3,1,3"></td>
-                            <td class="box button" width="20%" id="box3,1,4"></td>
-                            <td class="box button" width="20%" id="box3,1,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box3,2,1"></td>
-                            <td class="box button" width="20%" id="box3,2,2"></td>
-                            <td class="box button" width="20%" id="box3,2,3"></td>
-                            <td class="box button" width="20%" id="box3,2,4"></td>
-                            <td class="box button" width="20%" id="box3,2,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box3,3,1"></td>
-                            <td class="box button" width="20%" id="box3,3,2"></td>
-                            <td class="box button" width="20%" id="box3,3,3"></td>
-                            <td class="box button" width="20%" id="box3,3,4"></td>
-                            <td class="box button" width="20%" id="box3,3,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box3,4,1"></td>
-                            <td class="box button" width="20%" id="box3,4,2"></td>
-                            <td class="box button" width="20%" id="box3,4,3"></td>
-                            <td class="box button" width="20%" id="box3,4,4"></td>
-                            <td class="box button" width="20%" id="box3,4,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box3,5,1"></td>
-                            <td class="box button" width="20%" id="box3,5,2"></td>
-                            <td class="box button" width="20%" id="box3,5,3"></td>
-                            <td class="box button" width="20%" id="box3,5,4"></td>
-                            <td class="box button" width="20%" id="box3,5,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box3,6,1"></td>
-                            <td class="box button" width="20%" id="box3,6,2"></td>
-                            <td class="box button" width="20%" id="box3,6,3"></td>
-                            <td class="box button" width="20%" id="box3,6,4"></td>
-                            <td class="box button" width="20%" id="box3,6,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box3,7,1"></td>
-                            <td class="box button" width="20%" id="box3,7,2"></td>
-                            <td class="box button" width="20%" id="box3,7,3"></td>
-                            <td class="box button" width="20%" id="box3,7,4"></td>
-                            <td class="box button" width="20%" id="box3,7,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box3,8,1"></td>
-                            <td class="box button" width="20%" id="box3,8,2"></td>
-                            <td class="box button" width="20%" id="box3,8,3"></td>
-                            <td class="box button" width="20%" id="box3,8,4"></td>
-                            <td class="box button" width="20%" id="box3,8,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box3,9,1"></td>
-                            <td class="box button" width="20%" id="box3,9,2"></td>
-                            <td class="box button" width="20%" id="box3,9,3"></td>
-                            <td class="box button" width="20%" id="box3,9,4"></td>
-                            <td class="box button" width="20%" id="box3,9,5"></td>
-                        </tr>
-                    </table>
-                </td>
-                <td style="width: 50%; padding:0px;">
-                    <table style="width: 100%;" class="table_guesses">
-                        <tr>
-                            <td class="box button" width="20%" id="box4,1,1"></td>
-                            <td class="box button" width="20%" id="box4,1,2"></td>
-                            <td class="box button" width="20%" id="box4,1,3"></td>
-                            <td class="box button" width="20%" id="box4,1,4"></td>
-                            <td class="box button" width="20%" id="box4,1,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box4,2,1"></td>
-                            <td class="box button" width="20%" id="box4,2,2"></td>
-                            <td class="box button" width="20%" id="box4,2,3"></td>
-                            <td class="box button" width="20%" id="box4,2,4"></td>
-                            <td class="box button" width="20%" id="box4,2,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box4,3,1"></td>
-                            <td class="box button" width="20%" id="box4,3,2"></td>
-                            <td class="box button" width="20%" id="box4,3,3"></td>
-                            <td class="box button" width="20%" id="box4,3,4"></td>
-                            <td class="box button" width="20%" id="box4,3,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box4,4,1"></td>
-                            <td class="box button" width="20%" id="box4,4,2"></td>
-                            <td class="box button" width="20%" id="box4,4,3"></td>
-                            <td class="box button" width="20%" id="box4,4,4"></td>
-                            <td class="box button" width="20%" id="box4,4,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box4,5,1"></td>
-                            <td class="box button" width="20%" id="box4,5,2"></td>
-                            <td class="box button" width="20%" id="box4,5,3"></td>
-                            <td class="box button" width="20%" id="box4,5,4"></td>
-                            <td class="box button" width="20%" id="box4,5,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box4,6,1"></td>
-                            <td class="box button" width="20%" id="box4,6,2"></td>
-                            <td class="box button" width="20%" id="box4,6,3"></td>
-                            <td class="box button" width="20%" id="box4,6,4"></td>
-                            <td class="box button" width="20%" id="box4,6,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box4,7,1"></td>
-                            <td class="box button" width="20%" id="box4,7,2"></td>
-                            <td class="box button" width="20%" id="box4,7,3"></td>
-                            <td class="box button" width="20%" id="box4,7,4"></td>
-                            <td class="box button" width="20%" id="box4,7,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box4,8,1"></td>
-                            <td class="box button" width="20%" id="box4,8,2"></td>
-                            <td class="box button" width="20%" id="box4,8,3"></td>
-                            <td class="box button" width="20%" id="box4,8,4"></td>
-                            <td class="box button" width="20%" id="box4,8,5"></td>
-                        </tr>
-                        <tr>
-                            <td class="box button" width="20%" id="box4,9,1"></td>
-                            <td class="box button" width="20%" id="box4,9,2"></td>
-                            <td class="box button" width="20%" id="box4,9,3"></td>
-                            <td class="box button" width="20%" id="box4,9,4"></td>
-                            <td class="box button" width="20%" id="box4,9,5"></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
+        <div style="width: 100%;flex: 1;overflow: auto;">
+            <table style="width: 100%; border-spacing:0px;">
+                <tr>
+                    <td style="width: 50%; padding:0px;">
+                        <table style="width: 100%;" class="table_guesses">
+                            <tr>
+                                <td class="box button" width="20%" id="box1,1,1"></td>
+                                <td class="box button" width="20%" id="box1,1,2"></td>
+                                <td class="box button" width="20%" id="box1,1,3"></td>
+                                <td class="box button" width="20%" id="box1,1,4"></td>
+                                <td class="box button" width="20%" id="box1,1,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box1,2,1"></td>
+                                <td class="box button" width="20%" id="box1,2,2"></td>
+                                <td class="box button" width="20%" id="box1,2,3"></td>
+                                <td class="box button" width="20%" id="box1,2,4"></td>
+                                <td class="box button" width="20%" id="box1,2,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box1,3,1"></td>
+                                <td class="box button" width="20%" id="box1,3,2"></td>
+                                <td class="box button" width="20%" id="box1,3,3"></td>
+                                <td class="box button" width="20%" id="box1,3,4"></td>
+                                <td class="box button" width="20%" id="box1,3,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box1,4,1"></td>
+                                <td class="box button" width="20%" id="box1,4,2"></td>
+                                <td class="box button" width="20%" id="box1,4,3"></td>
+                                <td class="box button" width="20%" id="box1,4,4"></td>
+                                <td class="box button" width="20%" id="box1,4,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box1,5,1"></td>
+                                <td class="box button" width="20%" id="box1,5,2"></td>
+                                <td class="box button" width="20%" id="box1,5,3"></td>
+                                <td class="box button" width="20%" id="box1,5,4"></td>
+                                <td class="box button" width="20%" id="box1,5,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box1,6,1"></td>
+                                <td class="box button" width="20%" id="box1,6,2"></td>
+                                <td class="box button" width="20%" id="box1,6,3"></td>
+                                <td class="box button" width="20%" id="box1,6,4"></td>
+                                <td class="box button" width="20%" id="box1,6,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box1,7,1"></td>
+                                <td class="box button" width="20%" id="box1,7,2"></td>
+                                <td class="box button" width="20%" id="box1,7,3"></td>
+                                <td class="box button" width="20%" id="box1,7,4"></td>
+                                <td class="box button" width="20%" id="box1,7,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box1,8,1"></td>
+                                <td class="box button" width="20%" id="box1,8,2"></td>
+                                <td class="box button" width="20%" id="box1,8,3"></td>
+                                <td class="box button" width="20%" id="box1,8,4"></td>
+                                <td class="box button" width="20%" id="box1,8,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box1,9,1"></td>
+                                <td class="box button" width="20%" id="box1,9,2"></td>
+                                <td class="box button" width="20%" id="box1,9,3"></td>
+                                <td class="box button" width="20%" id="box1,9,4"></td>
+                                <td class="box button" width="20%" id="box1,9,5"></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width: 50%; padding:0px;">
+                        <table style="width: 100%;" class="table_guesses">
+                            <tr>
+                                <td class="box button" width="20%" id="box2,1,1"></td>
+                                <td class="box button" width="20%" id="box2,1,2"></td>
+                                <td class="box button" width="20%" id="box2,1,3"></td>
+                                <td class="box button" width="20%" id="box2,1,4"></td>
+                                <td class="box button" width="20%" id="box2,1,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box2,2,1"></td>
+                                <td class="box button" width="20%" id="box2,2,2"></td>
+                                <td class="box button" width="20%" id="box2,2,3"></td>
+                                <td class="box button" width="20%" id="box2,2,4"></td>
+                                <td class="box button" width="20%" id="box2,2,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box2,3,1"></td>
+                                <td class="box button" width="20%" id="box2,3,2"></td>
+                                <td class="box button" width="20%" id="box2,3,3"></td>
+                                <td class="box button" width="20%" id="box2,3,4"></td>
+                                <td class="box button" width="20%" id="box2,3,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box2,4,1"></td>
+                                <td class="box button" width="20%" id="box2,4,2"></td>
+                                <td class="box button" width="20%" id="box2,4,3"></td>
+                                <td class="box button" width="20%" id="box2,4,4"></td>
+                                <td class="box button" width="20%" id="box2,4,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box2,5,1"></td>
+                                <td class="box button" width="20%" id="box2,5,2"></td>
+                                <td class="box button" width="20%" id="box2,5,3"></td>
+                                <td class="box button" width="20%" id="box2,5,4"></td>
+                                <td class="box button" width="20%" id="box2,5,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box2,6,1"></td>
+                                <td class="box button" width="20%" id="box2,6,2"></td>
+                                <td class="box button" width="20%" id="box2,6,3"></td>
+                                <td class="box button" width="20%" id="box2,6,4"></td>
+                                <td class="box button" width="20%" id="box2,6,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box2,7,1"></td>
+                                <td class="box button" width="20%" id="box2,7,2"></td>
+                                <td class="box button" width="20%" id="box2,7,3"></td>
+                                <td class="box button" width="20%" id="box2,7,4"></td>
+                                <td class="box button" width="20%" id="box2,7,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box2,8,1"></td>
+                                <td class="box button" width="20%" id="box2,8,2"></td>
+                                <td class="box button" width="20%" id="box2,8,3"></td>
+                                <td class="box button" width="20%" id="box2,8,4"></td>
+                                <td class="box button" width="20%" id="box2,8,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box2,9,1"></td>
+                                <td class="box button" width="20%" id="box2,9,2"></td>
+                                <td class="box button" width="20%" id="box2,9,3"></td>
+                                <td class="box button" width="20%" id="box2,9,4"></td>
+                                <td class="box button" width="20%" id="box2,9,5"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 50%; padding:0px;">
+                        <table style="width: 100%;" class="table_guesses">
+                            <tr>
+                                <td class="box button" width="20%" id="box3,1,1"></td>
+                                <td class="box button" width="20%" id="box3,1,2"></td>
+                                <td class="box button" width="20%" id="box3,1,3"></td>
+                                <td class="box button" width="20%" id="box3,1,4"></td>
+                                <td class="box button" width="20%" id="box3,1,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box3,2,1"></td>
+                                <td class="box button" width="20%" id="box3,2,2"></td>
+                                <td class="box button" width="20%" id="box3,2,3"></td>
+                                <td class="box button" width="20%" id="box3,2,4"></td>
+                                <td class="box button" width="20%" id="box3,2,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box3,3,1"></td>
+                                <td class="box button" width="20%" id="box3,3,2"></td>
+                                <td class="box button" width="20%" id="box3,3,3"></td>
+                                <td class="box button" width="20%" id="box3,3,4"></td>
+                                <td class="box button" width="20%" id="box3,3,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box3,4,1"></td>
+                                <td class="box button" width="20%" id="box3,4,2"></td>
+                                <td class="box button" width="20%" id="box3,4,3"></td>
+                                <td class="box button" width="20%" id="box3,4,4"></td>
+                                <td class="box button" width="20%" id="box3,4,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box3,5,1"></td>
+                                <td class="box button" width="20%" id="box3,5,2"></td>
+                                <td class="box button" width="20%" id="box3,5,3"></td>
+                                <td class="box button" width="20%" id="box3,5,4"></td>
+                                <td class="box button" width="20%" id="box3,5,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box3,6,1"></td>
+                                <td class="box button" width="20%" id="box3,6,2"></td>
+                                <td class="box button" width="20%" id="box3,6,3"></td>
+                                <td class="box button" width="20%" id="box3,6,4"></td>
+                                <td class="box button" width="20%" id="box3,6,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box3,7,1"></td>
+                                <td class="box button" width="20%" id="box3,7,2"></td>
+                                <td class="box button" width="20%" id="box3,7,3"></td>
+                                <td class="box button" width="20%" id="box3,7,4"></td>
+                                <td class="box button" width="20%" id="box3,7,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box3,8,1"></td>
+                                <td class="box button" width="20%" id="box3,8,2"></td>
+                                <td class="box button" width="20%" id="box3,8,3"></td>
+                                <td class="box button" width="20%" id="box3,8,4"></td>
+                                <td class="box button" width="20%" id="box3,8,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box3,9,1"></td>
+                                <td class="box button" width="20%" id="box3,9,2"></td>
+                                <td class="box button" width="20%" id="box3,9,3"></td>
+                                <td class="box button" width="20%" id="box3,9,4"></td>
+                                <td class="box button" width="20%" id="box3,9,5"></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width: 50%; padding:0px;">
+                        <table style="width: 100%;" class="table_guesses">
+                            <tr>
+                                <td class="box button" width="20%" id="box4,1,1"></td>
+                                <td class="box button" width="20%" id="box4,1,2"></td>
+                                <td class="box button" width="20%" id="box4,1,3"></td>
+                                <td class="box button" width="20%" id="box4,1,4"></td>
+                                <td class="box button" width="20%" id="box4,1,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box4,2,1"></td>
+                                <td class="box button" width="20%" id="box4,2,2"></td>
+                                <td class="box button" width="20%" id="box4,2,3"></td>
+                                <td class="box button" width="20%" id="box4,2,4"></td>
+                                <td class="box button" width="20%" id="box4,2,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box4,3,1"></td>
+                                <td class="box button" width="20%" id="box4,3,2"></td>
+                                <td class="box button" width="20%" id="box4,3,3"></td>
+                                <td class="box button" width="20%" id="box4,3,4"></td>
+                                <td class="box button" width="20%" id="box4,3,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box4,4,1"></td>
+                                <td class="box button" width="20%" id="box4,4,2"></td>
+                                <td class="box button" width="20%" id="box4,4,3"></td>
+                                <td class="box button" width="20%" id="box4,4,4"></td>
+                                <td class="box button" width="20%" id="box4,4,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box4,5,1"></td>
+                                <td class="box button" width="20%" id="box4,5,2"></td>
+                                <td class="box button" width="20%" id="box4,5,3"></td>
+                                <td class="box button" width="20%" id="box4,5,4"></td>
+                                <td class="box button" width="20%" id="box4,5,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box4,6,1"></td>
+                                <td class="box button" width="20%" id="box4,6,2"></td>
+                                <td class="box button" width="20%" id="box4,6,3"></td>
+                                <td class="box button" width="20%" id="box4,6,4"></td>
+                                <td class="box button" width="20%" id="box4,6,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box4,7,1"></td>
+                                <td class="box button" width="20%" id="box4,7,2"></td>
+                                <td class="box button" width="20%" id="box4,7,3"></td>
+                                <td class="box button" width="20%" id="box4,7,4"></td>
+                                <td class="box button" width="20%" id="box4,7,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box4,8,1"></td>
+                                <td class="box button" width="20%" id="box4,8,2"></td>
+                                <td class="box button" width="20%" id="box4,8,3"></td>
+                                <td class="box button" width="20%" id="box4,8,4"></td>
+                                <td class="box button" width="20%" id="box4,8,5"></td>
+                            </tr>
+                            <tr>
+                                <td class="box button" width="20%" id="box4,9,1"></td>
+                                <td class="box button" width="20%" id="box4,9,2"></td>
+                                <td class="box button" width="20%" id="box4,9,3"></td>
+                                <td class="box button" width="20%" id="box4,9,4"></td>
+                                <td class="box button" width="20%" id="box4,9,5"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
         <div id="post_game" style="">
             <table width="100%">
                 <tr height="33%">
@@ -638,7 +640,7 @@ function initDaily() {
     free_mode = false;
     restart();
     acquire("title").style.display = "none";
-    acquire("game").style.display = "";
+    acquire("game").style.display = "flex";
 }
 
 function initFree() {
@@ -646,7 +648,7 @@ function initFree() {
     free_mode = true;
     restart();
     acquire("title").style.display = "none";
-    acquire("game").style.display = "";
+    acquire("game").style.display = "flex";
 }
 
 function backToTitle() {
