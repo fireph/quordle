@@ -417,6 +417,12 @@ table {
                 <td id="tutorial2" style="padding:6px;cursor:pointer;width:32px;">
                     <img src="help_outline.svg" width="32" height="32">
                 </td>
+                <td id="fullscreen" style="padding:6px;cursor:pointer;width:32px;">
+                    <img src="fullscreen.svg" width="32" height="32">
+                </td>
+                <td id="exit_fullscreen" style="padding:6px;cursor:pointer;width:32px;display:none;">
+                    <img src="fullscreen_exit.svg" width="32" height="32">
+                </td>
             </div>
             </tr>
         </table>
@@ -908,6 +914,7 @@ function backToTitle() {
     acquire("title").style.display = "";
     acquire("game").style.display = "none";
     acquire("body").style.backgroundColor = "rgb(24, 26, 27)";
+    exitFullscreen();
     if (window.gtag) {
         gtag("event", "back", {
             mode: mode_leaving,
@@ -928,6 +935,18 @@ function backFromTutorial() {
         acquire("game").style.display = "none";
     }
     acquire("tutorial").style.display = "none";
+}
+
+function initFullscreen() {
+    document.body.requestFullscreen();
+    acquire("fullscreen").style.display = "none";
+    acquire("exit_fullscreen").style.display = "";
+}
+
+function exitFullscreen() {
+    document.exitFullscreen();
+    acquire("fullscreen").style.display = "";
+    acquire("exit_fullscreen").style.display = "none";
 }
 
 function pressKey(e) {
@@ -1281,6 +1300,8 @@ acquire("daily").onclick = initDaily
 acquire("free").onclick = initFree
 acquire("tutorial1").onclick = initTutorial
 acquire("tutorial2").onclick = initTutorial
+acquire("fullscreen").onclick = initFullscreen
+acquire("exit_fullscreen").onclick = exitFullscreen
 
 acquire("enter1").onclick = function() {
     pk_wrap("", 13);
