@@ -417,7 +417,7 @@ table {
                 <td id="tutorial2" style="padding:6px;cursor:pointer;width:32px;">
                     <img src="help_outline.svg" width="32" height="32">
                 </td>
-                <td id="fullscreen" style="padding:6px;cursor:pointer;width:32px;">
+                <td id="fullscreen" style="padding:6px;cursor:pointer;width:32px;display:none;">
                     <img src="fullscreen.svg" width="32" height="32">
                 </td>
                 <td id="exit_fullscreen" style="padding:6px;cursor:pointer;width:32px;display:none;">
@@ -865,6 +865,19 @@ free_mode = false;
 tutorial_mode = false;
 restoring_game = false;
 
+function iOS() {
+  return [
+    'ipad simulator',
+    'iphone simulator',
+    'ipod simulator',
+    'ipad',
+    'iphone',
+    'ipod'
+  ].includes(navigator.platform.toLowerCase())
+  // iPad on iOS 13 detection
+  || (navigator.userAgent.toLowerCase().includes("mac") && "ontouchend" in document)
+}
+
 function initDaily() {
     daily_mode = true;
     free_mode = false;
@@ -872,6 +885,13 @@ function initDaily() {
     acquire("title").style.display = "none";
     acquire("game").style.display = "flex";
     acquire("tutorial").style.display = "none";
+    if (iOS()) {
+        acquire("fullscreen").style.display = "none";
+        acquire("exit_fullscreen").style.display = "none";
+    } else {
+        acquire("fullscreen").style.display = "";
+        acquire("exit_fullscreen").style.display = "none";
+    }
     if (window.gtag) {
         gtag("event", "start", {
             mode: "daily",
@@ -887,6 +907,13 @@ function initFree() {
     acquire("title").style.display = "none";
     acquire("game").style.display = "flex";
     acquire("tutorial").style.display = "none";
+    if (iOS()) {
+        acquire("fullscreen").style.display = "none";
+        acquire("exit_fullscreen").style.display = "none";
+    } else {
+        acquire("fullscreen").style.display = "";
+        acquire("exit_fullscreen").style.display = "none";
+    }
     if (window.gtag) {
         gtag("event", "start", {
             mode: "free",
