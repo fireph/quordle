@@ -879,6 +879,14 @@ function iOS() {
   || (navigator.userAgent.toLowerCase().includes("mac") && "ontouchend" in document)
 }
 
+function canGoFullscreen() {
+    return !iOS() && (document.body.requestFullscreen || document.body.mozRequestFullScreen || document.body.webkitRequestFullScreen || document.body.msRequestFullscreen);
+}
+
+function isInFullscreen() {
+    return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+}
+
 function initDaily() {
     daily_mode = true;
     free_mode = false;
@@ -886,11 +894,11 @@ function initDaily() {
     acquire("title").style.display = "none";
     acquire("game").style.display = "flex";
     acquire("tutorial").style.display = "none";
-    if (iOS()) {
-        acquire("fullscreen").style.display = "none";
+    if (canGoFullscreen()) {
+        acquire("fullscreen").style.display = "";
         acquire("exit_fullscreen").style.display = "none";
     } else {
-        acquire("fullscreen").style.display = "";
+        acquire("fullscreen").style.display = "none";
         acquire("exit_fullscreen").style.display = "none";
     }
     if (window.gtag) {
@@ -908,11 +916,11 @@ function initFree() {
     acquire("title").style.display = "none";
     acquire("game").style.display = "flex";
     acquire("tutorial").style.display = "none";
-    if (iOS()) {
-        acquire("fullscreen").style.display = "none";
+    if (canGoFullscreen()) {
+        acquire("fullscreen").style.display = "";
         acquire("exit_fullscreen").style.display = "none";
     } else {
-        acquire("fullscreen").style.display = "";
+        acquire("fullscreen").style.display = "none";
         acquire("exit_fullscreen").style.display = "none";
     }
     if (window.gtag) {
@@ -966,15 +974,29 @@ function backFromTutorial() {
 }
 
 function initFullscreen() {
-    document.body.requestFullscreen({ navigationUI: "hide" });
-    acquire("fullscreen").style.display = "none";
-    acquire("exit_fullscreen").style.display = "";
+    if (document.body.requestFullscreen) {
+        document.body.requestFullscreen({ navigationUI: "hide" });
+    } else if (document.body.mozRequestFullScreen) {
+        document.body.mozRequestFullScreen();
+    } else if (document.body.webkitRequestFullScreen) {
+        document.body.webkitRequestFullScreen();
+    } else if (document.body.msRequestFullscreen) {
+        document.body.msRequestFullscreen();
+    }
 }
 
 function exitFullscreen() {
-    document.exitFullscreen();
-    acquire("fullscreen").style.display = "";
-    acquire("exit_fullscreen").style.display = "none";
+    if (isInFullscreen()) {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
 }
 
 function pressKey(e) {
@@ -1330,6 +1352,23 @@ acquire("tutorial1").onclick = initTutorial
 acquire("tutorial2").onclick = initTutorial
 acquire("fullscreen").onclick = initFullscreen
 acquire("exit_fullscreen").onclick = exitFullscreen
+
+function fullscreenHandler() {
+    if (isInFullscreen()) {
+        acquire("fullscreen").style.display = "none";
+        acquire("exit_fullscreen").style.display = "";
+    } else {
+        acquire("fullscreen").style.display = "";
+        acquire("exit_fullscreen").style.display = "none";
+    }
+}
+
+if (document.addEventListener) {
+    document.addEventListener('fullscreenchange', fullscreenHandler, false);
+    document.addEventListener('mozfullscreenchange', fullscreenHandler, false);
+    document.addEventListener('MSFullscreenChange', fullscreenHandler, false);
+    document.addEventListener('webkitfullscreenchange', fullscreenHandler, false);
+}
 
 acquire("enter1").onclick = function() {
     pk_wrap("", 13);
