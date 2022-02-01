@@ -1343,7 +1343,7 @@ function do_share(discord, copy) {
         document.execCommand("copy");
     }
 
-    if (window.gtag) {
+    if (copy && window.gtag) {
         gtag("event", "share", {
             mode: daily_mode ? "daily" : "free",
             share_type: discord ? "discord" : "normal",
