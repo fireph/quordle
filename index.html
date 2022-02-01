@@ -1401,8 +1401,8 @@ function render_bg_keys() {
             }
         }
         for (var g = 0; g < keyColors.length; g++) {
-            if (keyGuessed && keyColors[i] === "rgb(24, 26, 27)") {
-                keyColors[i] = "#5c5c5c"
+            if (keyGuessed && keyColors[g] === "rgb(24, 26, 27)") {
+                keyColors[g] = "#5c5c5c"
             }
         }
         var bg = "linear-gradient(45deg, " + keyColors[0] + ", " + keyColors[0] + " 100%), linear-gradient(135deg, " + keyColors[2] + ", " + keyColors[2] + "), linear-gradient(225deg, " + keyColors[1] + ", " + keyColors[1] + ") , linear-gradient(225deg, " + keyColors[3] + ", " + keyColors[3] + ")"
