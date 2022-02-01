@@ -938,7 +938,7 @@ function backFromTutorial() {
 }
 
 function initFullscreen() {
-    document.body.requestFullscreen();
+    document.body.requestFullscreen({ navigationUI: "hide" });
     acquire("fullscreen").style.display = "none";
     acquire("exit_fullscreen").style.display = "";
 }
