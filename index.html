@@ -1138,6 +1138,10 @@ function restart() {
     }
     rnd.genrand_int31();
     rnd.genrand_int31();
+    if (seed > 8) {
+        rnd.genrand_int31();
+        rnd.genrand_int31();
+    }
     do {
         answer = [
             answers[rnd.genrand_int31() % answers.length],
