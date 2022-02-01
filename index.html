@@ -64,8 +64,9 @@ a {
     /* Standard */
 }
 
-
-/* var colorOptions = ["#919191", "#ffcc00", "#00cc88"] */
+.key {
+    cursor: pointer;
+}
 
 .bg-quad {
     color: black;
@@ -166,8 +167,10 @@ table {
                     </tr>
                 </table>
             </div>
-            <div class="button">&nbsp;</div>
-            <div class="box bg1" style="width: 60%; border:double;" id="daily">
+            <div id="tutorial1" style="padding:12px;cursor:pointer;">
+                <img src="help_outline.svg" width="32" height="32">
+            </div>
+            <div class="box bg1" style="width: 60%; border:double;cursor:pointer;" id="daily">
                 <table style="width:100%;">
                     <tr>
                         <td style="width:50%; text-align:right;">daily</td>
@@ -189,7 +192,7 @@ table {
                 </table>
             </div>
             <div class="button">&nbsp;</div>
-            <div class="box bg5" style="width: 60%; border:double;" id="free">
+            <div class="box bg5" style="width: 60%; border:double;cursor:pointer;" id="free">
                 <table style="width:100%;">
                     <tr>
                         <td style="width:50%; text-align:right; color:black;">free</td>
@@ -212,11 +215,205 @@ table {
             </div>
         </center>
     </div>
+    <div id="tutorial" style="width:100%;font-size:50%;display:none;color:white;background-color:rgb(24, 26, 27);">
+        <table style="width: 100%;font-size:200%;">
+            <tr>
+                <td class="box" style="border: none; border-style: double; width:35%;cursor:pointer;" id="leave_tutorial">back</td>
+            </tr>
+        </table>
+        <h3>Guess all four QUORDLE words in 9 tries.</h3>
+        <p>Each guess must be a valid 5 letter word. Hit the enter button to submit.<br><br>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
+        <h2>Examples</h2>
+        <table style="width: 50%; border-spacing:0px;font-size:200%;">
+            <tr>
+                <td style="width: 50%; padding:0px;">
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1" style="background-color:#00cc88;">C</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2">R</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3">O</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4">W</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5">N</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <p>The letter C is in the word and in the correct spot.<br><br></p>
+        <table style="width: 50%; border-spacing:0px;font-size:200%;">
+            <tr>
+                <td style="width: 50%; padding:0px;">
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1">B</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2" style="background-color:#ffcc00;">A</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3">D</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4">G</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5">E</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <p>The letter A is in the word but in the wrong spot.<br><br></p>
+        <table style="width: 50%; border-spacing:0px;font-size:200%;">
+            <tr>
+                <td style="width: 50%; padding:0px;">
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1">C</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2">O</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3">M</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4">F</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5">Y</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <p>The letters C, O, M, F, Y are not in the word in any spot.<br><br>When you type a guess in QUORDLE, you will guess that word for all four words that you are solving. All four words you are solving will be different.<br></p>
+        <table style="width: 100%; border-spacing:0px;font-size:200%;">
+            <tr>
+                <td style="width: 50%; padding:0px;">
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1">W</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2">O</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3">R</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4">L</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5">D</td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5"></td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width: 50%; padding:0px;">
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1">W</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2">O</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3" style="background-color:#ffcc00;">R</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4">L</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5" style="background-color:#00cc88;">D</td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5"></td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 50%; padding:0px;">
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1">W</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2">O</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3">R</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4" style="background-color:#ffcc00;">L</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5">D</td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5"></td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width: 50%; padding:0px;">
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1">W</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2" style="background-color:#00cc88;">O</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3">R</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4">L</td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5" style="background-color:#ffcc00;">D</td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5"></td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%;" class="table_guesses">
+                        <tr>
+                            <td class="box button" width="20%" id="boxdemo1,1,1"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,2"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,3"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,4"></td>
+                            <td class="box button" width="20%" id="boxdemo1,1,5"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <p>For the guess WORLD:
+            <ol>
+                <li>The top left word has none of the letters.</li>
+                <li>The top right word has the R in the wrong spot and the D in the correct spot.</li>
+                <li>The bottom left word has the L in the wrong spot.</li>
+                <li>The bottom right word has the O in the right spot and the D in the wrong spot.</li>
+            </ol>
+        </p>
+        <p>You have 9 guesses to get all 4 words correct. Good luck!</p>
+        <p>A new QUORDLE will be available each day!<br><br></p>
+    </div>
     <div id="game" style="display: none;flex-direction: column;" width="100%">
         <table style="width: 100%;">
             <tr>
-                <td class="box" style="border: none; border-style: double; width:35%;" id="restart">back</td>
+                <td class="box" style="border: none; border-style: double; width:25%;cursor:pointer;" id="restart">back</td>
                 <td style="width:*; text-align:center;" id="game_title"></td>
+                <td id="tutorial2" style="padding:6px;cursor:pointer;width:32px;">
+                    <img src="help_outline.svg" width="32" height="32">
+                </td>
+            </div>
             </tr>
         </table>
         <div style="width: 100%;flex: 1;overflow: auto;">
@@ -498,14 +695,14 @@ table {
         <div id="post_game" style="">
             <table width="100%">
                 <tr height="33%">
-                    <td rowspan=3 style="width:50%; "> <textarea class="box" style="width:100%; border: 1px solid;" rows=11 id="share_content">test</textarea></td>
+                    <td rowspan=3 style="width:50%; "> <textarea class="box" style="width:100%; border: 1px solid;overflow:auto;resize:none;" rows=11 id="share_content">test</textarea></td>
                     <td style="font-size:75%; width:50%; text-align:center;" id="answer">&nbsp;</td>
                 </tr>
                 <tr height="33%">
-                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;" id="share">copy to clipboard</td>
+                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;" id="share">copy to clipboard</td>
                 </tr>
                 <tr height="33%">
-                    <td class="box" style="border: none; border-style: double;font-size:50%;height:33%;" id="share_discord">copy in discord format</td>
+                    <td class="box" style="border: none; border-style: double;font-size:50%;height:33%;cursor:pointer;" id="share_discord">copy in discord format</td>
                 </tr>
             </table>
         </div>
@@ -655,6 +852,7 @@ answers = "aback abase abate abbey abbot abhor abide abled abode abort about abo
 
 daily_mode = false;
 free_mode = false;
+tutorial_mode = false;
 restoring_game = false;
 
 function initDaily() {
@@ -663,6 +861,7 @@ function initDaily() {
     restart();
     acquire("title").style.display = "none";
     acquire("game").style.display = "flex";
+    acquire("tutorial").style.display = "none";
     if (window.gtag) {
         gtag("event", "start", {
             mode: "daily",
@@ -677,11 +876,22 @@ function initFree() {
     restart();
     acquire("title").style.display = "none";
     acquire("game").style.display = "flex";
+    acquire("tutorial").style.display = "none";
     if (window.gtag) {
         gtag("event", "start", {
             mode: "free",
             daily_seed: undefined
         });
+    }
+}
+
+function initTutorial() {
+    tutorial_mode = true
+    acquire("title").style.display = "none";
+    acquire("game").style.display = "none";
+    acquire("tutorial").style.display = "";
+    if (window.gtag) {
+        gtag("event", "tutorial");
     }
 }
 
@@ -700,6 +910,20 @@ function backToTitle() {
             daily_seed: seed_leaving
         });
     }
+}
+
+function backFromTutorial() {
+    if (daily_mode) {
+        acquire("title").style.display = "none";
+        acquire("game").style.display = "flex";
+    } else if (free_mode) {
+        acquire("title").style.display = "none";
+        acquire("game").style.display = "flex";
+    } else {
+        acquire("title").style.display = "";
+        acquire("game").style.display = "none";
+    }
+    acquire("tutorial").style.display = "none";
 }
 
 function pressKey(e) {
@@ -1047,6 +1271,8 @@ for (k in keys) {
 }
 acquire("daily").onclick = initDaily
 acquire("free").onclick = initFree
+acquire("tutorial1").onclick = initTutorial
+acquire("tutorial2").onclick = initTutorial
 
 acquire("enter1").onclick = function() {
     pk_wrap("", 13);
@@ -1062,6 +1288,9 @@ acquire("bs").onclick = function() {
 }
 acquire("restart").onclick = function() {
     backToTitle();
+}
+acquire("leave_tutorial").onclick = function() {
+    backFromTutorial();
 }
 acquire("share").onclick = function() {
     do_share(false, true);
