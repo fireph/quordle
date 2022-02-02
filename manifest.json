@@ -5,47 +5,56 @@
     {
       "src": "/quordle/favicon-48.png",
       "type": "image/png",
-      "sizes": "48x48"
+      "sizes": "48x48",
+      "purpose": "any maskable"
     },
     {
       "src": "/quordle/favicon-72.png",
       "type": "image/png",
-      "sizes": "72x72"
+      "sizes": "72x72",
+      "purpose": "any maskable"
     },
     {
       "src": "/quordle/favicon-96.png",
       "type": "image/png",
-      "sizes": "96x96"
+      "sizes": "96x96",
+      "purpose": "any maskable"
     },
     {
       "src": "/quordle/favicon-128.png",
       "type": "image/png",
-      "sizes": "128x128"
+      "sizes": "128x128",
+      "purpose": "any maskable"
     },
     {
       "src": "/quordle/favicon-144.png",
       "type": "image/png",
-      "sizes": "144x144"
+      "sizes": "144x144",
+      "purpose": "any maskable"
     },
     {
       "src": "/quordle/favicon-168.png",
       "type": "image/png",
-      "sizes": "168x168"
+      "sizes": "168x168",
+      "purpose": "any maskable"
     },
     {
       "src": "/quordle/favicon-192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "/quordle/favicon-256.png",
       "type": "image/png",
-      "sizes": "256x256"
+      "sizes": "256x256",
+      "purpose": "any maskable"
     },
     {
       "src": "/quordle/favicon-512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": "https://fireph.github.io/quordle/",
