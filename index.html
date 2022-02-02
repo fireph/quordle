@@ -902,7 +902,9 @@ function iOS() {
 }
 
 function canGoFullscreen() {
-    return !iOS() && (document.body.requestFullscreen || document.body.mozRequestFullScreen || document.body.webkitRequestFullScreen || document.body.msRequestFullscreen);
+    isInWebAppiOS = (window.navigator.standalone === true);
+    isInWebAppChrome = (window.matchMedia('(display-mode: standalone)').matches);
+    return !iOS() && !isInWebAppiOS && !isInWebAppChrome && (document.body.requestFullscreen || document.body.mozRequestFullScreen || document.body.webkitRequestFullScreen || document.body.msRequestFullscreen);
 }
 
 function isInFullscreen() {
