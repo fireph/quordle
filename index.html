@@ -1592,26 +1592,30 @@ function do_share(copy, shareType) {
     text_mobile_share += "fireph.github.io/quordle"
 
     if (shareType === "mobile" && navigator.share) {
-        const canvas = document.querySelector("#canvas");
-        const ctx = canvas.getContext("2d");
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.font = '16px Arial'
-        ctx.textAlign = "center";
-        ctx.textBaseline = "top";
-        ctx.fillStyle = "#ffffff";
-        var canvas_lines = canvas_text.split("\n")
+        navigator.share({
+            text: text_share,
+        })
 
-        for (var i = 0 ; i < canvas_lines.length; i++) {
-            ctx.fillText(canvas_lines[i], canvas.width / 2, 20 + i * 20)
-        }
+        // const canvas = document.querySelector("#canvas");
+        // const ctx = canvas.getContext("2d");
+        // ctx.fillStyle = "black";
+        // ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // ctx.font = '16px Arial'
+        // ctx.textAlign = "center";
+        // ctx.textBaseline = "top";
+        // ctx.fillStyle = "#ffffff";
+        // var canvas_lines = canvas_text.split("\n")
 
-        canvas.toBlob(function(blob) {
-            navigator.share({
-                files: [blob],
-                text: text_mobile_share,
-            })
-        });
+        // for (var i = 0 ; i < canvas_lines.length; i++) {
+        //     ctx.fillText(canvas_lines[i], canvas.width / 2, 20 + i * 20)
+        // }
+
+        // canvas.toBlob(function(blob) {
+        //     navigator.share({
+        //         files: [blob],
+        //         text: text_mobile_share,
+        //     })
+        // });
     }
 
     printclear(acquire("share_content"), text_share);
@@ -1621,7 +1625,7 @@ function do_share(copy, shareType) {
         document.execCommand("copy");
     }
 
-    if (copy && window.gtag) {
+    if ((copy || shareType === "mobile") && window.gtag) {
         gtag("event", "share", {
             mode: daily_mode ? "daily" : "free",
             share_type: shareType,
