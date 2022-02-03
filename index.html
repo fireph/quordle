@@ -1614,7 +1614,6 @@ function do_share(copy, shareType) {
             var file = new File([blob], "quordle.png", { type: "image/png" });
             navigator.share({
                 files: [file],
-                url: "https://fireph.github.io/quordle",
                 text: text_mobile_share,
             });
         });
