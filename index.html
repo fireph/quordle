@@ -1528,7 +1528,7 @@ function do_share(copy, shareType) {
     printclear(acquire("answer"), real_answer);
 
     if (daily_mode) {
-        text_share = "Daily Quordle #" + seed.toString(10).padStart(4, "0") + " " +
+        text_share = "Daily Quordle #" + seed.toString(10) + " " +
             (answer_correct[0] >= 0 ? (answer_correct[0] + 1) : "X") +
             (answer_correct[1] >= 0 ? (answer_correct[1] + 1) : "X") +
             (answer_correct[2] >= 0 ? (answer_correct[2] + 1) : "X") +
@@ -1552,14 +1552,21 @@ function do_share(copy, shareType) {
     }
     var l2 = line - 1;
     if (answer_correct[2] >= 0 && answer_correct[3] >= 0) {
-        l = Math.max(answer_correct[2], answer_correct[3])
+        l2 = Math.max(answer_correct[2], answer_correct[3])
     }
-    for (var i = 0; i <= l1; i++) {
-        text_share += share[0][i] + " " + share[1][i] /*+ ((discord) ? (" ||`" + guesses[i].toUpperCase() + "`||") : "")*/ + "\n";
-    }
-    text_share += "\n"
-    for (var i = 0; i <= l2; i++) {
-        text_share += share[2][i] + " " + share[3][i] /*+ ((discord) ? (" ||`" + guesses[i].toUpperCase() + "`||") : "")*/ + "\n";
+    if (discord) {
+        for (var i = 0; i <= Math.max(l1, l2); i++) {
+            text_share += share[0][i] + " " + share[1][i] + " " + share[2][i] + " " + share[3][i] + " ||`" + guesses[i].toUpperCase() + "`||" + "\n";
+        }
+        text_share += "\n"
+    } else {
+        for (var i = 0; i <= l1; i++) {
+            text_share += share[0][i] + " " + share[1][i] + "\n";
+        }
+        text_share += "\n"
+        for (var i = 0; i <= l2; i++) {
+            text_share += share[2][i] + " " + share[3][i] + "\n";
+        }
     }
 
     if (!discord) {
