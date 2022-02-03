@@ -1191,7 +1191,7 @@ function show_post_game(show) {
     if (show) {
         acquire("post_game").style.display = "";
         acquire("keyboard").style.display = "none";
-        acquire("share").style.display = navigator.share ? "" : "none";
+        acquire("share").style.display = navigator.share && !iOS() ? "" : "none";
         do_share(false, "clipboard");
     } else {
         acquire("post_game").style.display = "none";
