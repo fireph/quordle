@@ -798,7 +798,7 @@ table {
         </table>
     </div>
 </div>
-<canvas id="canvas" width="280" height="450" style="display:none;"></canvas>
+<!-- <canvas id="canvas" width="280" height="450" style="display:none;"></canvas> -->
 <script src="https://v6p9d9t4.ssl.hwcdn.net/html/5162977/mersenne.js"></script>
 <script>
 function el(n, t) {
@@ -1191,7 +1191,7 @@ function show_post_game(show) {
     if (show) {
         acquire("post_game").style.display = "";
         acquire("keyboard").style.display = "none";
-        acquire("share").style.display = navigator.share && !iOS() ? "" : "none";
+        acquire("share").style.display = navigator.share ? "" : "none";
         do_share(false, "clipboard");
     } else {
         acquire("post_game").style.display = "none";
@@ -1554,9 +1554,9 @@ function do_share(copy, shareType) {
         }
     }
 
-    text_mobile_share = text_share
+    // text_mobile_share = text_share
     text_share += "\n";
-    canvas_text = ""
+    // canvas_text = ""
 
     var l1 = line - 1;
     if (answer_correct[0] >= 0 && answer_correct[1] >= 0 ) {
@@ -1568,13 +1568,13 @@ function do_share(copy, shareType) {
     }
     for (var i = 0; i <= l1; i++) {
         text_share += share[0][i] + " " + share[1][i] + "\n";
-        canvas_text += share[0][i] + "   " + share[1][i] + "\n";
+        // canvas_text += share[0][i] + "   " + share[1][i] + "\n";
     }
     text_share += "\n"
-    canvas_text += text_mobile_share + "\nfireph.github.io/quordle\n"
+    // canvas_text += text_mobile_share + "\nfireph.github.io/quordle\n"
     for (var i = 0; i <= l2; i++) {
         text_share += share[2][i] + " " + share[3][i] + "\n";
-        canvas_text += share[2][i] + "   " + share[3][i] + "\n";
+        // canvas_text += share[2][i] + "   " + share[3][i] + "\n";
     }
 
     // var tweetParams = new URLSearchParams();
@@ -1586,7 +1586,7 @@ function do_share(copy, shareType) {
 
     text_share += discord ? "<https://fireph.github.io/quordle>" : "fireph.github.io/quordle";
 
-    printclear(acquire("share_content"), shareType === "share" ? text_mobile_share + "\nfireph.github.io/quordle" : text_share);
+    printclear(acquire("share_content"), text_share);
 
     if (copy) {
         acquire("share_content").select();
@@ -1595,28 +1595,31 @@ function do_share(copy, shareType) {
     }
 
     if (shareType === "share" && navigator.share) {
-        const canvas = document.querySelector("#canvas");
-        const ctx = canvas.getContext("2d");
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.font = '16px Arial';
-        ctx.textAlign = "center";
-        ctx.textBaseline = "top";
-        ctx.fillStyle = "#ffffff";
-        var canvas_lines = canvas_text.split("\n");
-
-        for (var i = 0 ; i < canvas_lines.length; i++) {
-            ctx.fillText(canvas_lines[i], canvas.width / 2, 20 + i * 20 + (daily_mode ? 10 : 0));
-        }
-
-        canvas.toBlob(function(blob) {
-            var file = new File([blob], "quordle.png", { type: "image/png" });
-            navigator.share({
-                files: [file],
-                url: "https://fireph.github.io/quordle",
-                text: text_mobile_share,
-            });
+        navigator.share({
+            text: text_share,
         });
+        // const canvas = document.querySelector("#canvas");
+        // const ctx = canvas.getContext("2d");
+        // ctx.fillStyle = "black";
+        // ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // ctx.font = '16px Arial';
+        // ctx.textAlign = "center";
+        // ctx.textBaseline = "top";
+        // ctx.fillStyle = "#ffffff";
+        // var canvas_lines = canvas_text.split("\n");
+
+        // for (var i = 0 ; i < canvas_lines.length; i++) {
+        //     ctx.fillText(canvas_lines[i], canvas.width / 2, 20 + i * 20 + (daily_mode ? 10 : 0));
+        // }
+
+        // canvas.toBlob(function(blob) {
+        //     var file = new File([blob], "quordle.png", { type: "image/png" });
+        //     navigator.share({
+        //         files: [file],
+        //         url: "https://fireph.github.io/quordle",
+        //         text: text_mobile_share,
+        //     });
+        // });
     }
 
     if (copy && window.gtag) {
