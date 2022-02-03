@@ -728,23 +728,28 @@ table {
         </div>
         <div id="post_game" style="">
             <table width="100%">
-                <tr height="25%">
-                    <td rowspan=4 style="width:50%;">
-                        <textarea class="box" style="width:100%; border: 1px solid;overflow:auto;resize:none;" rows=16 id="share_content">test</textarea>
+                <tr height="20%">
+                    <td rowspan=5 style="width:50%;">
+                        <textarea class="box" style="width:100%; border: 1px solid;overflow:auto;resize:none;" rows=20 id="share_content">test</textarea>
                     </td>
                     <td style="font-size:75%; width:50%; text-align:center;" id="answer">&nbsp;</td>
                 </tr>
-                <tr height="25%">
+                <tr height="20%">
+                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;display:none;" id="share_mobile">
+                        share
+                    </td>
+                </tr>
+                <tr height="20%">
                     <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;" id="share">
                         copy to clipboard
                     </td>
                 </tr>
-                <tr height="25%">
+                <tr height="20%">
                     <td class="box" style="border: none; border-style: double;font-size:50%;height:33%;cursor:pointer;" id="share_discord">
                         copy in discord format
                     </td>
                 </tr>
-                <tr height="25%">
+                <tr height="20%">
                     <td class="box" style="border: none; border-style: double;font-size:50%;height:33%;align-items:middle;" >
                         <a id="tweet_link" href="https://twitter.com/share" target="_blank" style="display:block;width:100%;height:100%;text-decoration:none;">
                         tweet
@@ -793,6 +798,7 @@ table {
         </table>
     </div>
 </div>
+<canvas id="canvas" width="260" height="410" style="display:none;"></canvas>
 <script src="https://v6p9d9t4.ssl.hwcdn.net/html/5162977/mersenne.js"></script>
 <script>
 function el(n, t) {
@@ -1185,6 +1191,11 @@ function show_post_game(show) {
     if (show) {
         acquire("post_game").style.display = "";
         acquire("keyboard").style.display = "none";
+        if ((/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform))) {
+            acquire("share_mobile").style.display = "";
+        } else {
+            acquire("share_mobile").style.display = "none";
+        }
         do_share(false, "default");
     } else {
         acquire("post_game").style.display = "none";
@@ -1497,6 +1508,9 @@ acquire("leave_tutorial").onclick = function() {
     vibrate();
     pushHistory({tutorial: undefined})
 }
+acquire("share_mobile").onclick = function() {
+    do_share(false, "mobile")
+}
 acquire("share").onclick = function() {
     do_share(true, "default");
 }
@@ -1545,6 +1559,8 @@ function do_share(copy, shareType) {
     }
 
     text_share += "\n";
+    text_mobile_share = text_share
+    canvas_text = ""
 
     var l1 = line - 1;
     if (answer_correct[0] >= 0 && answer_correct[1] >= 0 ) {
@@ -1556,10 +1572,13 @@ function do_share(copy, shareType) {
     }
     for (var i = 0; i <= l1; i++) {
         text_share += share[0][i] + " " + share[1][i] + "\n";
+        canvas_text += share[0][i] + "   " + share[1][i] + "\n";
     }
     text_share += "\n"
+    canvas_text += "\n"
     for (var i = 0; i <= l2; i++) {
         text_share += share[2][i] + " " + share[3][i] + "\n";
+        canvas_text += share[2][i] + "   " + share[3][i] + "\n";
     }
 
     var tweetParams = new URLSearchParams();
@@ -1570,6 +1589,31 @@ function do_share(copy, shareType) {
     )
 
     text_share += discord ? "<https://fireph.github.io/quordle>" : "fireph.github.io/quordle";
+    text_mobile_share += "fireph.github.io/quordle"
+
+    if (shareType === "mobile" && navigator.share) {
+        const canvas = document.querySelector("#canvas");
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = '16px Arial'
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        ctx.fillStyle = "#ffffff";
+        var canvas_lines = canvas_text.split("\n")
+
+        for (var i = 0 ; i < canvas_lines.length; i++) {
+            ctx.fillText(canvas_lines[i], canvas.width / 2, 20 + i * 20)
+        }
+
+        canvas.toBlob(function(blob) {
+            navigator.share({
+                files: [blob],
+                text: text_mobile_share,
+            })
+        });
+    }
+
     printclear(acquire("share_content"), text_share);
 
     if (copy) {
