@@ -1554,8 +1554,8 @@ function do_share(copy, shareType) {
         }
     }
 
-    text_share += "\n";
     text_mobile_share = text_share
+    text_share += "\n";
     canvas_text = ""
 
     var l1 = line - 1;
@@ -1571,7 +1571,7 @@ function do_share(copy, shareType) {
         canvas_text += share[0][i] + "   " + share[1][i] + "\n";
     }
     text_share += "\n"
-    canvas_text += text_mobile_share + "fireph.github.io/quordle\n"
+    canvas_text += text_mobile_share + "\nfireph.github.io/quordle\n"
     for (var i = 0; i <= l2; i++) {
         text_share += share[2][i] + " " + share[3][i] + "\n";
         canvas_text += share[2][i] + "   " + share[3][i] + "\n";
@@ -1586,7 +1586,7 @@ function do_share(copy, shareType) {
 
     text_share += discord ? "<https://fireph.github.io/quordle>" : "fireph.github.io/quordle";
 
-    printclear(acquire("share_content"), shareType === "share" ? text_mobile_share : text_share);
+    printclear(acquire("share_content"), shareType === "share" ? text_mobile_share + "\nfireph.github.io/quordle" : text_share);
 
     if (copy) {
         acquire("share_content").select();
