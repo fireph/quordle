@@ -910,6 +910,12 @@ function pushHistory(paramsToSet) {
     }
 }
 
+function vibrate() {
+    if (navigator.vibrate) {
+        navigator.vibrate(1)
+    }
+}
+
 function iOS() {
   return [
     'ipad simulator',
@@ -1408,23 +1414,34 @@ for (k in keys) {
     var acq = acquire(keys[k]);
     acq.key = keys[k];
     acq.onclick = function() {
+        vibrate();
         pk_wrap(this.key, 0);
     }
 }
 acquire("daily").onclick = function() {
+    vibrate();
     pushHistory({mode: "daily"})
 }
 acquire("free").onclick = function() {
+    vibrate();
     pushHistory({mode: "free"})
 }
 acquire("tutorial1").onclick = function() {
+    vibrate();
     pushHistory({tutorial: "true"})
 }
 acquire("tutorial2").onclick = function() {
+    vibrate();
     pushHistory({tutorial: "true"})
 }
-acquire("fullscreen").onclick = initFullscreen
-acquire("exit_fullscreen").onclick = exitFullscreen
+acquire("fullscreen").onclick = function() {
+    vibrate();
+    initFullscreen();
+}
+acquire("exit_fullscreen").onclick = function() {
+    vibrate();
+    exitFullscreen();
+}
 
 function fullscreenHandler() {
     if (isInFullscreen()) {
@@ -1444,21 +1461,27 @@ if (document.addEventListener) {
 }
 
 acquire("enter1").onclick = function() {
+    vibrate();
     pk_wrap("", 13);
 }
 acquire("enter2").onclick = function() {
+    vibrate();
     pk_wrap("", 13);
 }
 acquire("enter3").onclick = function() {
+    vibrate();
     pk_wrap("", 13);
 }
 acquire("bs").onclick = function() {
+    vibrate();
     pk_wrap("", 8);
 }
 acquire("restart").onclick = function() {
+    vibrate();
     pushHistory({mode: undefined})
 }
 acquire("leave_tutorial").onclick = function() {
+    vibrate();
     pushHistory({tutorial: undefined})
 }
 acquire("share").onclick = function() {
