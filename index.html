@@ -1503,7 +1503,18 @@ acquire("share").onclick = function() {
 acquire("share_discord").onclick = function() {
     do_share(true, "discord");
 }
+acquire("tweet_link").onclick = function() {
+    vibrate();
+    if (window.gtag) {
+        gtag("event", "share", {
+            mode: daily_mode ? "daily" : "free",
+            share_type: "twitter",
+            daily_seed: daily_mode ? seed : undefined
+        });
+    }
+}
 acquire("reset_free").onclick = function() {
+    vibrate();
     if (confirm("Are you sure you want to start a new Free Quordle? (The current game will be deleted)")) {
         window.localStorage.removeItem("free_guesses");
         window.localStorage.removeItem("last_free");
