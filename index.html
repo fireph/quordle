@@ -1525,7 +1525,7 @@ acquire("share_discord").onclick = function() {
 // }
 acquire("reset_free").onclick = function() {
     vibrate();
-    if (confirm("Are you sure you want to start a new Free Quordle? (The current game will be deleted)")) {
+    if (iOS() || confirm("Are you sure you want to start a new Free Quordle? (The current game will be deleted)")) {
         window.localStorage.removeItem("free_guesses");
         window.localStorage.removeItem("last_free");
         initFree();
