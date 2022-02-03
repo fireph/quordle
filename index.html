@@ -728,15 +728,28 @@ table {
         </div>
         <div id="post_game" style="">
             <table width="100%">
-                <tr height="33%">
-                    <td rowspan=3 style="width:50%; "> <textarea class="box" style="width:100%; border: 1px solid;overflow:auto;resize:none;" rows=11 id="share_content">test</textarea></td>
+                <tr height="25%">
+                    <td rowspan=4 style="width:50%;">
+                        <textarea class="box" style="width:100%; border: 1px solid;overflow:auto;resize:none;" rows=16 id="share_content">test</textarea>
+                    </td>
                     <td style="font-size:75%; width:50%; text-align:center;" id="answer">&nbsp;</td>
                 </tr>
-                <tr height="33%">
-                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;" id="share">copy to clipboard</td>
+                <tr height="25%">
+                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;" id="share">
+                        copy to clipboard
+                    </td>
                 </tr>
-                <tr height="33%">
-                    <td class="box" style="border: none; border-style: double;font-size:50%;height:33%;cursor:pointer;" id="share_discord">copy in discord format</td>
+                <tr height="25%">
+                    <td class="box" style="border: none; border-style: double;font-size:50%;height:33%;cursor:pointer;" id="share_discord">
+                        copy in discord format
+                    </td>
+                </tr>
+                <tr height="25%">
+                    <td class="box" style="border: none; border-style: double;font-size:50%;height:33%;align-items:middle;" >
+                        <a id="tweet_link" href="https://twitter.com/share" target="_blank" style="display:block;width:100%;height:100%;text-decoration:none;">
+                        tweet
+                        </a>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -1172,7 +1185,7 @@ function show_post_game(show) {
     if (show) {
         acquire("post_game").style.display = "";
         acquire("keyboard").style.display = "none";
-        do_share(false, false);
+        do_share(false, "default");
     } else {
         acquire("post_game").style.display = "none";
         acquire("keyboard").style.display = "";
@@ -1485,10 +1498,10 @@ acquire("leave_tutorial").onclick = function() {
     pushHistory({tutorial: undefined})
 }
 acquire("share").onclick = function() {
-    do_share(false, true);
+    do_share(true, "default");
 }
 acquire("share_discord").onclick = function() {
-    do_share(true, true);
+    do_share(true, "discord");
 }
 acquire("reset_free").onclick = function() {
     if (confirm("Are you sure you want to start a new Free Quordle? (The current game will be deleted)")) {
@@ -1498,23 +1511,26 @@ acquire("reset_free").onclick = function() {
     }
 }
 
-function do_share(discord, copy) {
+function do_share(copy, shareType) {
+    var discord = shareType === "discord"
     var real_answer = answer[0].toUpperCase() + " & " + answer[1].toUpperCase() + " & " + answer[2].toUpperCase() + " & " + answer[3].toUpperCase();
     printclear(acquire("answer"), real_answer);
 
     if (daily_mode) {
         text_share = "Daily Quordle #" + seed.toString(10).padStart(4, "0") + " " +
-            (answer_correct[0] >= 0 ? (answer_correct[0] + 1) : "X") + "&" +
-            (answer_correct[1] >= 0 ? (answer_correct[1] + 1) : "X") + "&" +
-            (answer_correct[2] >= 0 ? (answer_correct[2] + 1) : "X") + "&" +
-            (answer_correct[3] >= 0 ? (answer_correct[3] + 1) : "X") + "/9 ";
+            (answer_correct[0] >= 0 ? (answer_correct[0] + 1) : "X") +
+            (answer_correct[1] >= 0 ? (answer_correct[1] + 1) : "X") +
+            (answer_correct[2] >= 0 ? (answer_correct[2] + 1) : "X") +
+            (answer_correct[3] >= 0 ? (answer_correct[3] + 1) : "X") + "/9";
     } else {
         text_share = "Quordle " +
-            (answer_correct[0] >= 0 ? (answer_correct[0] + 1) : "X") + "&" +
-            (answer_correct[1] >= 0 ? (answer_correct[1] + 1) : "X") + "&" +
-            (answer_correct[2] >= 0 ? (answer_correct[2] + 1) : "X") + "&" +
-            (answer_correct[3] >= 0 ? (answer_correct[3] + 1) : "X") + "/9 ";
-        if (line >= 9 || (answer_correct[0] >= 0 && answer_correct[1] >= 0 && answer_correct[2] >= 0 && answer_correct[3] >= 0)) text_share += "||`" + answer[0].toUpperCase() + "&" + answer[1].toUpperCase() + "&" + answer[2].toUpperCase() + "&" + answer[3].toUpperCase() + "`||";
+            (answer_correct[0] >= 0 ? (answer_correct[0] + 1) : "X") +
+            (answer_correct[1] >= 0 ? (answer_correct[1] + 1) : "X") +
+            (answer_correct[2] >= 0 ? (answer_correct[2] + 1) : "X") +
+            (answer_correct[3] >= 0 ? (answer_correct[3] + 1) : "X") + "/9";
+        if (line >= 9 || (answer_correct[0] >= 0 && answer_correct[1] >= 0 && answer_correct[2] >= 0 && answer_correct[3] >= 0)){
+            text_share += "\n||`" + answer[0].toUpperCase() + "-" + answer[1].toUpperCase() + "-" + answer[2].toUpperCase() + "-" + answer[3].toUpperCase() + "`||";
+        }
     }
 
     text_share += "\n";
@@ -1528,14 +1544,24 @@ function do_share(discord, copy) {
         l = Math.max(answer_correct[2], answer_correct[3])
     }
     for (var i = 0; i <= l1; i++) {
-        text_share += share[0][i] + " " + share[1][i] + ((discord) ? (" ||`" + guesses[i].toUpperCase() + "`||") : "") + "\n";
+        text_share += share[0][i] + " " + share[1][i] /*+ ((discord) ? (" ||`" + guesses[i].toUpperCase() + "`||") : "")*/ + "\n";
     }
     text_share += "\n"
     for (var i = 0; i <= l2; i++) {
-        text_share += share[2][i] + " " + share[3][i] + ((discord) ? (" ||`" + guesses[i].toUpperCase() + "`||") : "") + "\n";
+        text_share += share[2][i] + " " + share[3][i] /*+ ((discord) ? (" ||`" + guesses[i].toUpperCase() + "`||") : "")*/ + "\n";
     }
+
+    if (!discord) {
+        text_share = text_share.replaceAll("||", "").replaceAll("`", "");
+        var tweetParams = new URLSearchParams();
+        tweetParams.set("text", text_share.replaceAll("\uD83D\uDFE9", "G").replaceAll("\uD83D\uDFE8", "Y").replaceAll("\u2B1C", "_"))
+        tweetParams.set("url", "fireph.github.io/quordle")
+        acquire("tweet_link").setAttribute(
+            "href", "https://twitter.com/share?" + tweetParams
+        )
+    }
+
     text_share += discord ? "<https://fireph.github.io/quordle>" : "fireph.github.io/quordle";
-    if (!discord) text_share = text_share.replaceAll("||", "").replaceAll("`", "");
     printclear(acquire("share_content"), text_share);
 
     if (copy) {
