@@ -436,6 +436,7 @@ table {
         <table style="width: 100%;">
             <tr>
                 <td class="box" style="border: none; border-style: double; width:25%;cursor:pointer;" id="restart">back</td>
+                <td class="box" style="border: none; border-style: double; width:20%;cursor:pointer;display:none;" id="reset_free">new</td>
                 <td style="width:*; text-align:center;font-size:75%;" id="game_title"></td>
                 <td id="tutorial2" style="padding:6px;cursor:pointer;width:32px;">
                     <img src="help_outline.svg" width="32" height="32">
@@ -888,6 +889,27 @@ free_mode = false;
 tutorial_mode = false;
 restoring_game = false;
 
+function pushHistory(paramsToSet) {
+    var searchParams = new URLSearchParams(location.search);
+    var paramsStringBefore = searchParams.toString()
+    for (var key of Object.keys(paramsToSet)) {
+        if (paramsToSet[key] === undefined || paramsToSet[key] === null) {
+            searchParams.delete(key);
+        } else {
+            searchParams.set(key, paramsToSet[key]);
+        }
+    }
+    var paramsString = searchParams.toString()
+    if (paramsString !== paramsStringBefore) {
+        if (paramsString) {
+            window.history.pushState({}, "", location.pathname + "?" + paramsString);
+        } else {
+            window.history.pushState({}, "", location.pathname);
+        }
+        onStateChange();
+    }
+}
+
 function iOS() {
   return [
     'ipad simulator',
@@ -918,6 +940,7 @@ function initDaily() {
     acquire("title").style.display = "none";
     acquire("game").style.display = "flex";
     acquire("tutorial").style.display = "none";
+    acquire("reset_free").style.display= "none";
     if (canGoFullscreen()) {
         acquire("fullscreen").style.display = "";
         acquire("exit_fullscreen").style.display = "none";
@@ -940,6 +963,7 @@ function initFree() {
     acquire("title").style.display = "none";
     acquire("game").style.display = "flex";
     acquire("tutorial").style.display = "none";
+    acquire("reset_free").style.display= "";
     if (canGoFullscreen()) {
         acquire("fullscreen").style.display = "";
         acquire("exit_fullscreen").style.display = "none";
@@ -955,6 +979,23 @@ function initFree() {
     }
 }
 
+function onStateChange() {
+    var params = new URLSearchParams(location.search);
+    var mode = params.get("mode")
+    var tutorial = params.get("tutorial")
+    if (tutorial === "true") {
+        initTutorial();
+    } else if (mode === "daily") {
+        initDaily();
+    } else if (mode === "free") {
+        initFree();
+    } else {
+        initTitle();
+    }
+}
+
+window.addEventListener("popstate", onStateChange);
+
 function initTutorial() {
     tutorial_mode = true
     acquire("title").style.display = "none";
@@ -965,14 +1006,14 @@ function initTutorial() {
     }
 }
 
-function backToTitle() {
+function initTitle() {
     mode_leaving = daily_mode ? "daily" : "free";
     seed_leaving = daily_mode ? seed : undefined;
     daily_mode = false;
     free_mode = false;
-    restart();
     acquire("title").style.display = "";
     acquire("game").style.display = "none";
+    acquire("tutorial").style.display = "none";
     acquire("body").style.backgroundColor = "rgb(24, 26, 27)";
     exitFullscreen();
     if (window.gtag) {
@@ -981,20 +1022,6 @@ function backToTitle() {
             daily_seed: seed_leaving
         });
     }
-}
-
-function backFromTutorial() {
-    if (daily_mode) {
-        acquire("title").style.display = "none";
-        acquire("game").style.display = "flex";
-    } else if (free_mode) {
-        acquire("title").style.display = "none";
-        acquire("game").style.display = "flex";
-    } else {
-        acquire("title").style.display = "";
-        acquire("game").style.display = "none";
-    }
-    acquire("tutorial").style.display = "none";
 }
 
 function initFullscreen() {
@@ -1230,7 +1257,23 @@ function restart() {
         }
         rnd = new MersenneTwister(seed);
     } else if (free_mode) {
-        rnd = new MersenneTwister();
+        if (!no_localstorage) {
+            try {
+                var freeSeed = window.localStorage.getItem("last_free");
+                if (freeSeed) {
+                    rnd = new MersenneTwister(Number(freeSeed));
+                } else {
+                    freeSeed = new Date().getTime();
+                    window.localStorage.setItem("last_free", freeSeed);
+                    rnd = new MersenneTwister(freeSeed);
+                }
+            } catch (e) {
+                no_localstorage = true;
+            }
+        }
+        if (!rnd) {
+            rnd = new MersenneTwister();
+        }
         printclear(acquire("game_title"), "free quordle");
     }
     rnd.genrand_int31();
@@ -1271,9 +1314,9 @@ function restart() {
     acquire("keyboard").style.display = "";
     render_bg_keys();
 
-    if (daily_mode && !no_localstorage) {
+    if ((daily_mode || free_mode) && !no_localstorage) {
         try {
-            ls_guesses = window.localStorage.getItem("daily_guesses")
+            ls_guesses = window.localStorage.getItem(daily_mode ? "daily_guesses" : "free_guesses")
             ls_guesses = ls_guesses ? ls_guesses.split(",") : [];
             if (ls_guesses.length > 0) {
                 restoring_game = true
@@ -1286,8 +1329,8 @@ function restart() {
                 restoring_game = false
                 if (window.gtag) {
                     gtag("event", "restore", {
-                        mode: "daily",
-                        daily_seed: seed
+                        mode: daily_mode ? "daily" : "free",
+                        daily_seed: daily_mode ? seed : undefined
                     });
                 }
             }
@@ -1299,9 +1342,9 @@ function restart() {
 
 
 function update_local_storage() {
-    if (!no_localstorage && daily_mode) {
+    if (!no_localstorage && (daily_mode || free_mode)) {
         try {
-            window.localStorage.setItem("daily_guesses", guesses.join(","));
+            window.localStorage.setItem(daily_mode ? "daily_guesses" : "free_guesses", guesses.join(","));
         } catch (e) {
             no_localstorage = true;
         }
@@ -1368,10 +1411,18 @@ for (k in keys) {
         pk_wrap(this.key, 0);
     }
 }
-acquire("daily").onclick = initDaily
-acquire("free").onclick = initFree
-acquire("tutorial1").onclick = initTutorial
-acquire("tutorial2").onclick = initTutorial
+acquire("daily").onclick = function() {
+    pushHistory({mode: "daily"})
+}
+acquire("free").onclick = function() {
+    pushHistory({mode: "free"})
+}
+acquire("tutorial1").onclick = function() {
+    pushHistory({tutorial: "true"})
+}
+acquire("tutorial2").onclick = function() {
+    pushHistory({tutorial: "true"})
+}
 acquire("fullscreen").onclick = initFullscreen
 acquire("exit_fullscreen").onclick = exitFullscreen
 
@@ -1405,16 +1456,23 @@ acquire("bs").onclick = function() {
     pk_wrap("", 8);
 }
 acquire("restart").onclick = function() {
-    backToTitle();
+    pushHistory({mode: undefined})
 }
 acquire("leave_tutorial").onclick = function() {
-    backFromTutorial();
+    pushHistory({tutorial: undefined})
 }
 acquire("share").onclick = function() {
     do_share(false, true);
 }
 acquire("share_discord").onclick = function() {
     do_share(true, true);
+}
+acquire("reset_free").onclick = function() {
+    if (confirm("Are you sure you want to start a new Free Quordle? (The current game will be deleted)")) {
+        window.localStorage.removeItem("free_guesses");
+        window.localStorage.removeItem("last_free");
+        initFree();
+    }
 }
 
 function do_share(discord, copy) {
@@ -1516,6 +1574,8 @@ window.onresize = function() {
     document.documentElement.style.setProperty('--collapse', body.clientWidth <= 300 ? 'collapse' : 'separate');
 }
 window.onresize();
+
+onStateChange();
 </script>
 </body>
 </html>
