@@ -1592,30 +1592,31 @@ function do_share(copy, shareType) {
     text_mobile_share += "fireph.github.io/quordle"
 
     if (shareType === "mobile" && navigator.share) {
-        navigator.share({
-            url: "https://fireph.github.io/quordle>",
-            text: text_share
-        })
-        // const canvas = document.querySelector("#canvas");
-        // const ctx = canvas.getContext("2d");
-        // ctx.fillStyle = "black";
-        // ctx.fillRect(0, 0, canvas.width, canvas.height);
-        // ctx.font = '16px Arial'
-        // ctx.textAlign = "center";
-        // ctx.textBaseline = "top";
-        // ctx.fillStyle = "#ffffff";
-        // var canvas_lines = canvas_text.split("\n")
+        // navigator.share({
+        //     url: "https://fireph.github.io/quordle>",
+        //     text: text_share
+        // })
+        const canvas = document.querySelector("#canvas");
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = '16px Arial'
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        ctx.fillStyle = "#ffffff";
+        var canvas_lines = canvas_text.split("\n")
 
-        // for (var i = 0 ; i < canvas_lines.length; i++) {
-        //     ctx.fillText(canvas_lines[i], canvas.width / 2, 20 + i * 20)
-        // }
+        for (var i = 0 ; i < canvas_lines.length; i++) {
+            ctx.fillText(canvas_lines[i], canvas.width / 2, 20 + i * 20)
+        }
 
-        // canvas.toBlob(function(blob) {
-        //     navigator.share({
-        //         files: [blob],
-        //         text: text_mobile_share,
-        //     })
-        // });
+        canvas.toBlob(function(blob) {
+            var file = new File([blob], "quordle.png", { type: "image/png" })
+            navigator.share({
+                files: [file],
+                text: text_mobile_share,
+            })
+        });
     }
 
     printclear(acquire("share_content"), text_share);
