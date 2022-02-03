@@ -728,30 +728,25 @@ table {
         </div>
         <div id="post_game" style="">
             <table width="100%">
-                <tr height="20%">
-                    <td rowspan=5 style="width:50%;">
+                <tr height="25%">
+                    <td rowspan=4 style="width:50%;">
                         <textarea class="box" style="width:100%; border: 1px solid;overflow:auto;resize:none;" rows=20 id="share_content">test</textarea>
                     </td>
                     <td style="font-size:75%; width:50%; text-align:center;" id="answer">&nbsp;</td>
                 </tr>
-                <tr height="20%">
-                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;display:none;" id="share">
+                <tr height="25%">
+                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;visibility:hidden;" id="share">
                         share
                     </td>
                 </tr>
-                <tr height="20%">
-                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;display:none;" id="share_image">
+                <tr height="25%">
+                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;visibility:hidden;" id="share_image">
                         share as image (twitter)
                     </td>
                 </tr>
-                <tr height="20%">
+                <tr height="25%">
                     <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;" id="share_clipboard">
                         copy to clipboard
-                    </td>
-                </tr>
-                <tr height="20%">
-                    <td class="box" style="border: none; border-style: double;font-size:50%;height:33%;cursor:pointer;" id="share_discord">
-                        copy in discord format
                     </td>
                 </tr>
                 <!-- <tr height="20%">
@@ -1196,8 +1191,8 @@ function show_post_game(show) {
     if (show) {
         acquire("post_game").style.display = "";
         acquire("keyboard").style.display = "none";
-        acquire("share").style.display = navigator.share ? "" : "none";
-        acquire("share_image").style.display = navigator.share ? "" : "none";
+        acquire("share").style.visibility = navigator.share ? "" : "hidden";
+        acquire("share_image").style.visibility = navigator.share ? "" : "hidden";
         do_share(false, "clipboard");
     } else {
         acquire("post_game").style.display = "none";
@@ -1516,9 +1511,6 @@ acquire("share").onclick = function() {
 acquire("share_clipboard").onclick = function() {
     do_share(true, "clipboard");
 }
-acquire("share_discord").onclick = function() {
-    do_share(true, "discord");
-}
 acquire("share_image").onclick = function() {
     do_share(true, "image");
 }
@@ -1566,7 +1558,6 @@ function get_num_emoji(num) {
 }
 
 function do_share(copy, shareType) {
-    var discord = shareType === "discord"
     var real_answer = answer[0].toUpperCase() + " - " + answer[1].toUpperCase() + "\n" + answer[2].toUpperCase() + " - " + answer[3].toUpperCase();
     printclear(acquire("answer"), real_answer);
 
@@ -1615,7 +1606,7 @@ function do_share(copy, shareType) {
     //     "href", "https://twitter.com/share?" + tweetParams
     // )
 
-    text_share += discord ? "<https://fireph.github.io/quordle>" : "fireph.github.io/quordle";
+    text_share += "fireph.github.io/quordle";
 
     printclear(acquire("share_content"), shareType === "image" ? text_mobile_share : text_share);
 
@@ -1623,7 +1614,7 @@ function do_share(copy, shareType) {
         acquire("share_content").select();
         document.execCommand("copy");
         acquire("share_content").blur();
-        if (shareType === "clipboard" || shareType === "discord") {
+        if (shareType === "clipboard") {
             alert("Copied results to clipboard!")
         }
     }
