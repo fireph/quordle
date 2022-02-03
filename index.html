@@ -735,12 +735,12 @@ table {
                     <td style="font-size:75%; width:50%; text-align:center;" id="answer">&nbsp;</td>
                 </tr>
                 <tr height="25%">
-                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;display:none;" id="share_image">
-                        share image
+                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;display:none;" id="share">
+                        share
                     </td>
                 </tr>
                 <tr height="25%">
-                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;" id="share">
+                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;" id="share_clipboard">
                         copy to clipboard
                     </td>
                 </tr>
@@ -798,7 +798,7 @@ table {
         </table>
     </div>
 </div>
-<canvas id="canvas" width="260" height="410" style="display:none;"></canvas>
+<canvas id="canvas" width="280" height="450" style="display:none;"></canvas>
 <script src="https://v6p9d9t4.ssl.hwcdn.net/html/5162977/mersenne.js"></script>
 <script>
 function el(n, t) {
@@ -1191,12 +1191,8 @@ function show_post_game(show) {
     if (show) {
         acquire("post_game").style.display = "";
         acquire("keyboard").style.display = "none";
-        if (navigator.share && (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform))) {
-            acquire("share_image").style.display = "";
-        } else {
-            acquire("share_image").style.display = "none";
-        }
-        do_share(false, "default");
+        acquire("share").style.display = navigator.share ? "" : "none";
+        do_share(false, "clipboard");
     } else {
         acquire("post_game").style.display = "none";
         acquire("keyboard").style.display = "";
@@ -1508,11 +1504,11 @@ acquire("leave_tutorial").onclick = function() {
     vibrate();
     pushHistory({tutorial: undefined})
 }
-acquire("share_image").onclick = function() {
-    do_share(true, "mobile")
-}
 acquire("share").onclick = function() {
-    do_share(true, "default");
+    do_share(true, "share");
+}
+acquire("share_clipboard").onclick = function() {
+    do_share(true, "clipboard");
 }
 acquire("share_discord").onclick = function() {
     do_share(true, "discord");
@@ -1520,7 +1516,7 @@ acquire("share_discord").onclick = function() {
 // acquire("tweet_link").onclick = function() {
 //     vibrate();
 //     if (window.gtag) {
-//         gtag("event", "share", {
+//         gtag("event", "share_clipboard", {
 //             mode: daily_mode ? "daily" : "free",
 //             share_type: "twitter",
 //             daily_seed: daily_mode ? seed : undefined
@@ -1575,7 +1571,7 @@ function do_share(copy, shareType) {
         canvas_text += share[0][i] + "   " + share[1][i] + "\n";
     }
     text_share += "\n"
-    canvas_text += "\n"
+    canvas_text += text_mobile_share + "fireph.github.io/quordle\n"
     for (var i = 0; i <= l2; i++) {
         text_share += share[2][i] + " " + share[3][i] + "\n";
         canvas_text += share[2][i] + "   " + share[3][i] + "\n";
@@ -1591,7 +1587,7 @@ function do_share(copy, shareType) {
     text_share += discord ? "<https://fireph.github.io/quordle>" : "fireph.github.io/quordle";
     text_mobile_share += "fireph.github.io/quordle"
 
-    printclear(acquire("share_content"), shareType === "mobile" ? text_mobile_share : text_share);
+    printclear(acquire("share_content"), shareType === "share" ? text_mobile_share : text_share);
 
     if (copy) {
         acquire("share_content").select();
@@ -1599,27 +1595,28 @@ function do_share(copy, shareType) {
         acquire("share_content").blur();
     }
 
-    if (shareType === "mobile" && navigator.share) {
+    if (shareType === "share" && navigator.share) {
         const canvas = document.querySelector("#canvas");
         const ctx = canvas.getContext("2d");
         ctx.fillStyle = "black";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.font = '16px Arial'
+        ctx.font = '16px Arial';
         ctx.textAlign = "center";
         ctx.textBaseline = "top";
         ctx.fillStyle = "#ffffff";
-        var canvas_lines = canvas_text.split("\n")
+        var canvas_lines = canvas_text.split("\n");
 
         for (var i = 0 ; i < canvas_lines.length; i++) {
-            ctx.fillText(canvas_lines[i], canvas.width / 2, 20 + i * 20)
+            ctx.fillText(canvas_lines[i], canvas.width / 2, 20 + i * 20 + (daily_mode ? 10 : 0));
         }
 
         canvas.toBlob(function(blob) {
-            var file = new File([blob], "quordle.png", { type: "image/png" })
+            var file = new File([blob], "quordle.png", { type: "image/png" });
             navigator.share({
                 files: [file],
+                url: "https://fireph.github.io/quordle",
                 text: text_mobile_share,
-            })
+            });
         });
     }
 
