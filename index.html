@@ -1585,7 +1585,6 @@ function do_share(copy, shareType) {
     // )
 
     text_share += discord ? "<https://fireph.github.io/quordle>" : "fireph.github.io/quordle";
-    text_mobile_share += "fireph.github.io/quordle"
 
     printclear(acquire("share_content"), shareType === "share" ? text_mobile_share : text_share);
 
@@ -1614,6 +1613,7 @@ function do_share(copy, shareType) {
             var file = new File([blob], "quordle.png", { type: "image/png" });
             navigator.share({
                 files: [file],
+                url: "https://fireph.github.io/quordle",
                 text: text_mobile_share,
             });
         });
