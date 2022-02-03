@@ -1530,6 +1530,7 @@ function do_share(discord, copy) {
     for (var i = 0; i <= l1; i++) {
         text_share += share[0][i] + " " + share[1][i] + ((discord) ? (" ||`" + guesses[i].toUpperCase() + "`||") : "") + "\n";
     }
+    text_share += "\n"
     for (var i = 0; i <= l2; i++) {
         text_share += share[2][i] + " " + share[3][i] + ((discord) ? (" ||`" + guesses[i].toUpperCase() + "`||") : "") + "\n";
     }
