@@ -728,34 +728,34 @@ table {
         </div>
         <div id="post_game" style="">
             <table width="100%">
-                <tr height="20%">
-                    <td rowspan=5 style="width:50%;">
-                        <textarea class="box" style="width:100%; border: 1px solid;overflow:auto;resize:none;" rows=20 id="share_content">test</textarea>
+                <tr height="25%">
+                    <td rowspan=4 style="width:50%;">
+                        <textarea class="box" style="width:100%; border: 1px solid;overflow:auto;resize:none;" rows=16 id="share_content">test</textarea>
                     </td>
                     <td style="font-size:75%; width:50%; text-align:center;" id="answer">&nbsp;</td>
                 </tr>
-                <tr height="20%">
-                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;display:none;" id="share_mobile">
-                        share
+                <tr height="25%">
+                    <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;display:none;" id="share_image">
+                        share image
                     </td>
                 </tr>
-                <tr height="20%">
+                <tr height="25%">
                     <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;" id="share">
                         copy to clipboard
                     </td>
                 </tr>
-                <tr height="20%">
+                <tr height="25%">
                     <td class="box" style="border: none; border-style: double;font-size:50%;height:33%;cursor:pointer;" id="share_discord">
                         copy in discord format
                     </td>
                 </tr>
-                <tr height="20%">
+                <!-- <tr height="20%">
                     <td class="box" style="border: none; border-style: double;font-size:50%;height:33%;align-items:middle;" >
                         <a id="tweet_link" href="https://twitter.com/share" target="_blank" style="display:block;width:100%;height:100%;text-decoration:none;">
                         tweet
                         </a>
                     </td>
-                </tr>
+                </tr> -->
             </table>
         </div>
         <table id="keyboard" style="width: 100%; max-width: 550px;" class="table_guesses">
@@ -1191,10 +1191,10 @@ function show_post_game(show) {
     if (show) {
         acquire("post_game").style.display = "";
         acquire("keyboard").style.display = "none";
-        if ((/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform))) {
-            acquire("share_mobile").style.display = "";
+        if (navigator.share && (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform))) {
+            acquire("share_image").style.display = "";
         } else {
-            acquire("share_mobile").style.display = "none";
+            acquire("share_image").style.display = "none";
         }
         do_share(false, "default");
     } else {
@@ -1508,8 +1508,8 @@ acquire("leave_tutorial").onclick = function() {
     vibrate();
     pushHistory({tutorial: undefined})
 }
-acquire("share_mobile").onclick = function() {
-    do_share(false, "mobile")
+acquire("share_image").onclick = function() {
+    do_share(true, "mobile")
 }
 acquire("share").onclick = function() {
     do_share(true, "default");
@@ -1517,16 +1517,16 @@ acquire("share").onclick = function() {
 acquire("share_discord").onclick = function() {
     do_share(true, "discord");
 }
-acquire("tweet_link").onclick = function() {
-    vibrate();
-    if (window.gtag) {
-        gtag("event", "share", {
-            mode: daily_mode ? "daily" : "free",
-            share_type: "twitter",
-            daily_seed: daily_mode ? seed : undefined
-        });
-    }
-}
+// acquire("tweet_link").onclick = function() {
+//     vibrate();
+//     if (window.gtag) {
+//         gtag("event", "share", {
+//             mode: daily_mode ? "daily" : "free",
+//             share_type: "twitter",
+//             daily_seed: daily_mode ? seed : undefined
+//         });
+//     }
+// }
 acquire("reset_free").onclick = function() {
     vibrate();
     if (confirm("Are you sure you want to start a new Free Quordle? (The current game will be deleted)")) {
@@ -1581,21 +1581,25 @@ function do_share(copy, shareType) {
         canvas_text += share[2][i] + "   " + share[3][i] + "\n";
     }
 
-    var tweetParams = new URLSearchParams();
-    tweetParams.set("text", text_share.replaceAll("\uD83D\uDFE9", "G").replaceAll("\uD83D\uDFE8", "Y").replaceAll("\u2B1C", "_"))
-    tweetParams.set("url", "fireph.github.io/quordle")
-    acquire("tweet_link").setAttribute(
-        "href", "https://twitter.com/share?" + tweetParams
-    )
+    // var tweetParams = new URLSearchParams();
+    // tweetParams.set("text", text_share.replaceAll("\uD83D\uDFE9", "G").replaceAll("\uD83D\uDFE8", "Y").replaceAll("\u2B1C", "_"))
+    // tweetParams.set("url", "fireph.github.io/quordle")
+    // acquire("tweet_link").setAttribute(
+    //     "href", "https://twitter.com/share?" + tweetParams
+    // )
 
     text_share += discord ? "<https://fireph.github.io/quordle>" : "fireph.github.io/quordle";
     text_mobile_share += "fireph.github.io/quordle"
 
+    printclear(acquire("share_content"), shareType === "mobile" ? text_mobile_share : text_share);
+
+    if (copy) {
+        acquire("share_content").select();
+        document.execCommand("copy");
+        acquire("share_content").blur();
+    }
+
     if (shareType === "mobile" && navigator.share) {
-        // navigator.share({
-        //     url: "https://fireph.github.io/quordle>",
-        //     text: text_share
-        // })
         const canvas = document.querySelector("#canvas");
         const ctx = canvas.getContext("2d");
         ctx.fillStyle = "black";
@@ -1619,14 +1623,7 @@ function do_share(copy, shareType) {
         });
     }
 
-    printclear(acquire("share_content"), text_share);
-
-    if (copy) {
-        acquire("share_content").select();
-        document.execCommand("copy");
-    }
-
-    if ((copy || shareType === "mobile") && window.gtag) {
+    if (copy && window.gtag) {
         gtag("event", "share", {
             mode: daily_mode ? "daily" : "free",
             share_type: shareType,
