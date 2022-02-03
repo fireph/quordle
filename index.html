@@ -1616,6 +1616,7 @@ function do_share(copy, shareType) {
     // )
 
     text_share += discord ? "<https://fireph.github.io/quordle>" : "fireph.github.io/quordle";
+    text_mobile_share += "fireph.github.io/quordle"
 
     printclear(acquire("share_content"), shareType === "image" ? text_mobile_share : text_share);
 
