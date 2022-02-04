@@ -18,7 +18,7 @@
 
 <!-- Twitter Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
-<meta property="twitter:domain" content="www.quordle.com">
+<meta property="twitter:domain" content="quordle.com">
 
 <meta name="theme-color" content="#181a1b" />
 <meta name=color-scheme content="dark">
@@ -1577,7 +1577,7 @@ function do_share(copy, shareType) {
     }
 
     text_share += "\n";
-    text_mobile_share = text_share + "www.quordle.com"
+    text_mobile_share = text_share + "quordle.com"
     canvas_text = ""
 
     var l1 = line - 1;
@@ -1601,12 +1601,12 @@ function do_share(copy, shareType) {
 
     // var tweetParams = new URLSearchParams();
     // tweetParams.set("text", text_share.replaceAll("\uD83D\uDFE9", "G").replaceAll("\uD83D\uDFE8", "Y").replaceAll("\u2B1C", "_"))
-    // tweetParams.set("url", "www.quordle.com")
+    // tweetParams.set("url", "quordle.com")
     // acquire("tweet_link").setAttribute(
     //     "href", "https://twitter.com/share?" + tweetParams
     // )
 
-    text_share += "www.quordle.com";
+    text_share += "quordle.com";
 
     printclear(acquire("share_content"), shareType === "image" ? text_mobile_share : text_share);
 
