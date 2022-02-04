@@ -57,7 +57,7 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "https://fireph.github.io/quordle/",
+  "start_url": "https://www.quordle.com",
   "background_color": "#181a1b",
   "display": "standalone",
   "orientation": "portrait",
