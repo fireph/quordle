@@ -3,55 +3,55 @@
   "name": "Quordle",
   "icons": [
     {
-      "src": "/favicon-48.png",
+      "src": "favicon-48.png",
       "type": "image/png",
       "sizes": "48x48",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon-72.png",
+      "src": "favicon-72.png",
       "type": "image/png",
       "sizes": "72x72",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon-96.png",
+      "src": "favicon-96.png",
       "type": "image/png",
       "sizes": "96x96",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon-128.png",
+      "src": "favicon-128.png",
       "type": "image/png",
       "sizes": "128x128",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon-144.png",
+      "src": "favicon-144.png",
       "type": "image/png",
       "sizes": "144x144",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon-168.png",
+      "src": "favicon-168.png",
       "type": "image/png",
       "sizes": "168x168",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon-192.png",
+      "src": "favicon-192.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon-256.png",
+      "src": "favicon-256.png",
       "type": "image/png",
       "sizes": "256x256",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon-512.png",
+      "src": "favicon-512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"
