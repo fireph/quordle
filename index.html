@@ -1576,8 +1576,9 @@ function do_share(copy, shareType) {
             get_num_emoji(answer_correct[3]) + (shouldShowWords ? " " + answer[2].toUpperCase() + " - " + answer[3].toUpperCase() : "");
     }
 
-    text_share += "\n";
-    text_mobile_share = text_share + "quordle.com"
+    text_share += "\nquordle.com";
+    text_mobile_share = text_share
+    text_share += "\n"
     canvas_text = ""
 
     var l1 = line - 1;
@@ -1605,8 +1606,6 @@ function do_share(copy, shareType) {
     // acquire("tweet_link").setAttribute(
     //     "href", "https://twitter.com/share?" + tweetParams
     // )
-
-    text_share += "quordle.com";
 
     printclear(acquire("share_content"), shareType === "image" ? text_mobile_share : text_share);
 
