@@ -1559,6 +1559,22 @@ function get_next_color_from_emojis(emojis) {
     }
 }
 
+function roundRect(ctx, x, y, width, height, radius) {
+    radius = {tl: radius, tr: radius, br: radius, bl: radius};
+    ctx.beginPath();
+    ctx.moveTo(x + radius.tl, y);
+    ctx.lineTo(x + width - radius.tr, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
+    ctx.lineTo(x + width, y + height - radius.br);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
+    ctx.lineTo(x + radius.bl, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
+    ctx.lineTo(x, y + radius.tl);
+    ctx.quadraticCurveTo(x, y, x + radius.tl, y);
+    ctx.closePath();
+    ctx.fill();
+}
+
 function do_share(copy, shareType) {
     var real_answer = answer[0].toUpperCase() + " - " + answer[1].toUpperCase() + "\n" + answer[2].toUpperCase() + " - " + answer[3].toUpperCase();
     printclear(acquire("answer"), real_answer);
@@ -1619,6 +1635,7 @@ function do_share(copy, shareType) {
         } else if (shareType === "image") {
             var size = 32;
             var padding = size / 16;
+            var radius = size / 8;
             var fontScale = 0.75;
             const canvas = document.querySelector("#canvas");
             canvas.width = (size + padding) * 11 - padding
@@ -1638,7 +1655,7 @@ function do_share(copy, shareType) {
                     var color = pair[0]
                     emojiStr = pair[1]
                     ctx.fillStyle = color;
-                    ctx.fillRect(x * (size + padding), y * (size + padding), size, size);
+                    roundRect(ctx, x * (size + padding), y * (size + padding), size, size, radius);
                     x++;
                 }
 
@@ -1649,7 +1666,7 @@ function do_share(copy, shareType) {
                     var color = pair[0]
                     emojiStr = pair[1]
                     ctx.fillStyle = color;
-                    ctx.fillRect(x * (size + padding), y * (size + padding), size, size);
+                    roundRect(ctx, x * (size + padding), y * (size + padding), size, size, radius);
                     x++;
                 }
                 y++;
@@ -1674,7 +1691,7 @@ function do_share(copy, shareType) {
                     ctx.fillStyle = answer_correct[i + row * 2] >= 0 ? "#00a6ed" : "#f8312f";
                     var dir = (i * 2 - 1)
                     var xTopCenter = canvas.width / 2 + dir * (padding / 2) + dir * (size / 2)
-                    ctx.fillRect(xTopCenter - size / 2, y * (size + padding), size, size);
+                    roundRect(ctx, xTopCenter - size / 2, y * (size + padding), size, size, radius);
                     if (answer_correct[i + row * 2] >= 0) {
                         ctx.textAlign = "center";
                         ctx.fillStyle = "#ffffff";
@@ -1719,7 +1736,7 @@ function do_share(copy, shareType) {
                     var color = pair[0]
                     emojiStr = pair[1]
                     ctx.fillStyle = color;
-                    ctx.fillRect(x * (size + padding), y * (size + padding), size, size);
+                    roundRect(ctx, x * (size + padding), y * (size + padding), size, size, radius);
                     x++;
                 }
 
@@ -1730,7 +1747,7 @@ function do_share(copy, shareType) {
                     var color = pair[0]
                     emojiStr = pair[1]
                     ctx.fillStyle = color;
-                    ctx.fillRect(x * (size + padding), y * (size + padding), size, size);
+                    roundRect(ctx, x * (size + padding), y * (size + padding), size, size, radius);
                     x++;
                 }
                 y++;
