@@ -1633,10 +1633,11 @@ function do_share(copy, shareType) {
                 text: text_share,
             });
         } else if (shareType === "image") {
-            var size = 32;
+            var size = 64;
             var padding = size / 16;
             var radius = size / 8;
             var fontScale = 0.75;
+            var textPadding = size / 4;
             const canvas = document.querySelector("#canvas");
             canvas.width = (size + padding) * 11 - padding
             canvas.height = (size + padding) * (l1 + 1 + l2 + 1 + 4) - padding;
@@ -1674,17 +1675,14 @@ function do_share(copy, shareType) {
 
             // draw middle text
             ctx.font = size * fontScale + 'px Arial';
-            textPadding = (size - size * fontScale) / 2
             ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
+            ctx.textBaseline = "alphabetic";
             ctx.fillStyle = "#ffffff";
 
-            // Need to add extra "padding" to text vertical position since it is not perfectly centered.
-            if (daily_mode) {
-                ctx.fillText("Daily Quordle #" + seed.toString(10), canvas.width / 2, y * (size + padding) + (size / 2) + padding, canvas.width - textPadding * 2);
-            } else {
-                ctx.fillText("Quordle", canvas.width / 2, y * (size + padding) + (size / 2) + padding, canvas.width - textPadding * 2);
-            }
+            var titleText = daily_mode ? "Daily Quordle #" + seed.toString(10) : "Quordle";
+            var metrics = ctx.measureText(titleText);
+            var fontHeight = metrics.actualBoundingBoxAscent;
+            ctx.fillText(titleText, canvas.width / 2, y * (size + padding) + size - (size - fontHeight) / 2, canvas.width - textPadding * 2);
             y++;
             for (var row = 0; row < 2; row++) {
                 for (var i = 0; i < 2; i++) {
@@ -1695,10 +1693,13 @@ function do_share(copy, shareType) {
                     if (answer_correct[i + row * 2] >= 0) {
                         ctx.textAlign = "center";
                         ctx.fillStyle = "#ffffff";
+                        var numText = answer_correct[i + row * 2]
+                        metrics = ctx.measureText(numText);
+                        fontHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
                         ctx.fillText(
-                            answer_correct[i + row * 2] + 1,
+                            numText,
                             xTopCenter,
-                            y * (size + padding) + (size / 2) + padding,
+                            y * (size + padding) + size - (size - fontHeight) / 2,
                             size
                         );
                     }
@@ -1706,23 +1707,30 @@ function do_share(copy, shareType) {
                 if (free_mode && shouldShowWords) {
                     ctx.textAlign = "right";
                     ctx.fillStyle = "#ffffff";
+                    var wordText = answer[0 + row * 2].toUpperCase()
+                    metrics = ctx.measureText(wordText);
+                    fontHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
                     ctx.fillText(
-                        answer[0 + row * 2].toUpperCase(),
+                        wordText,
                         canvas.width / 2 - padding / 2 - size - textPadding,
-                        y * (size + padding) + (size / 2) + padding,
+                        y * (size + padding) + size - (size - fontHeight) / 2,
                         canvas.width / 2 - padding - size - textPadding * 2
                     )
                     ctx.textAlign = "left";
+                    wordText = answer[1 + row * 2].toUpperCase()
+                    metrics = ctx.measureText(wordText);
+                    fontHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
                     ctx.fillText(
-                        answer[1 + row * 2].toUpperCase(),
+                        wordText,
                         canvas.width / 2 + padding / 2 + size + textPadding,
-                        y * (size + padding) + (size / 2) + padding,
+                        y * (size + padding) + size - (size - fontHeight) / 2,
                         canvas.width / 2 - padding - size - textPadding * 2
                     )
                 }
                 y++;
             }
             ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
             ctx.fillStyle = "#ffffff";
             ctx.fillText("quordle.com", canvas.width / 2, y * (size + padding) + (size / 2), canvas.width);
             y++;
