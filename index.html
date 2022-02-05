@@ -1614,6 +1614,14 @@ function do_share(copy, shareType) {
         text_share += share[2][i] + " " + share[3][i] + "\n";
     }
 
+    if (copy && window.gtag) {
+        gtag("event", "share", {
+            mode: daily_mode ? "daily" : "free",
+            share_type: shareType,
+            daily_seed: daily_mode ? seed : undefined
+        });
+    }
+
     printclear(acquire("share_content"), shareType === "image" ? text_mobile_share : text_share);
 
     if (copy) {
@@ -1626,14 +1634,6 @@ function do_share(copy, shareType) {
     }
 
     printclear(acquire("share_content"), text_share);
-
-    if (copy && window.gtag) {
-        gtag("event", "share", {
-            mode: daily_mode ? "daily" : "free",
-            share_type: shareType,
-            daily_seed: daily_mode ? seed : undefined
-        });
-    }
 
     if (navigator.share) {
         if (shareType === "share") {
