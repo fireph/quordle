@@ -1693,7 +1693,7 @@ function do_share(copy, shareType) {
                     if (answer_correct[i + row * 2] >= 0) {
                         ctx.textAlign = "center";
                         ctx.fillStyle = "#ffffff";
-                        var numText = answer_correct[i + row * 2]
+                        var numText = answer_correct[i + row * 2] + 1
                         metrics = ctx.measureText(numText);
                         fontHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
                         ctx.fillText(
