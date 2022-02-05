@@ -798,7 +798,7 @@ table {
         </table>
     </div>
 </div>
-<canvas id="canvas" width="300" height="500" style="position:absolute;left:0;top:0;display:none;"></canvas>
+<canvas id="canvas" width="176" height="352" style="position:absolute;left:0;top:0;display:none;"></canvas>
 <script src="https://v6p9d9t4.ssl.hwcdn.net/html/5162977/mersenne.js"></script>
 <script>
 function el(n, t) {
@@ -1514,16 +1514,6 @@ acquire("share_clipboard").onclick = function() {
 acquire("share_image").onclick = function() {
     do_share(true, "image");
 }
-// acquire("tweet_link").onclick = function() {
-//     vibrate();
-//     if (window.gtag) {
-//         gtag("event", "share_clipboard", {
-//             mode: daily_mode ? "daily" : "free",
-//             share_type: "twitter",
-//             daily_seed: daily_mode ? seed : undefined
-//         });
-//     }
-// }
 acquire("reset_free").onclick = function() {
     vibrate();
     if (iOS() || confirm("Are you sure you want to start a new Free Quordle? (The current game will be deleted)")) {
@@ -1557,10 +1547,23 @@ function get_num_emoji(num) {
     }
 }
 
+function get_next_color_from_emojis(emojis) {
+    if (emojis.startsWith("\uD83D\uDFE9")) {
+        return ["#00cc88", emojis.replace("\uD83D\uDFE9", "")]; // green
+    } else if (emojis.startsWith("\uD83D\uDFE8")) {
+        return ["#ffcc00", emojis.replace("\uD83D\uDFE8", "")]; // yellow
+    } else if (emojis.startsWith("\u2B1C")) {
+        return ["#e0e0e0", emojis.replace("\u2B1C", "")]; // white
+    } else if (emojis.startsWith("\u2B1B")) {
+        return ["#000000", emojis.replace("\u2B1B", "")]; // black
+    }
+}
+
 function do_share(copy, shareType) {
     var real_answer = answer[0].toUpperCase() + " - " + answer[1].toUpperCase() + "\n" + answer[2].toUpperCase() + " - " + answer[3].toUpperCase();
     printclear(acquire("answer"), real_answer);
 
+    var shouldShowWords = line >= 9 || (answer_correct[0] >= 0 && answer_correct[1] >= 0 && answer_correct[2] >= 0 && answer_correct[3] >= 0);
     if (daily_mode) {
         text_share = "Daily Quordle #" + seed.toString(10) + "\n" +
             get_num_emoji(answer_correct[0]) +
@@ -1568,7 +1571,6 @@ function do_share(copy, shareType) {
             get_num_emoji(answer_correct[2]) +
             get_num_emoji(answer_correct[3]);
     } else {
-        var shouldShowWords = line >= 9 || (answer_correct[0] >= 0 && answer_correct[1] >= 0 && answer_correct[2] >= 0 && answer_correct[3] >= 0);
         text_share = "Quordle\n" +
             get_num_emoji(answer_correct[0]) +
             get_num_emoji(answer_correct[1]) + (shouldShowWords ? " " + answer[0].toUpperCase() + " - " + answer[1].toUpperCase() : "") + "\n" +
@@ -1579,7 +1581,6 @@ function do_share(copy, shareType) {
     text_share += "\nquordle.com";
     text_mobile_share = text_share
     text_share += "\n"
-    canvas_text = ""
 
     var l1 = line - 1;
     if (answer_correct[0] >= 0 && answer_correct[1] >= 0 ) {
@@ -1591,21 +1592,11 @@ function do_share(copy, shareType) {
     }
     for (var i = 0; i <= l1; i++) {
         text_share += share[0][i] + " " + share[1][i] + "\n";
-        canvas_text += share[0][i] + "   " + share[1][i] + "\n";
     }
     text_share += "\n"
-    canvas_text += text_mobile_share + "\n"
     for (var i = 0; i <= l2; i++) {
         text_share += share[2][i] + " " + share[3][i] + "\n";
-        canvas_text += share[2][i] + "   " + share[3][i] + "\n";
     }
-
-    // var tweetParams = new URLSearchParams();
-    // tweetParams.set("text", text_share.replaceAll("\uD83D\uDFE9", "G").replaceAll("\uD83D\uDFE8", "Y").replaceAll("\u2B1C", "_"))
-    // tweetParams.set("url", "quordle.com")
-    // acquire("tweet_link").setAttribute(
-    //     "href", "https://twitter.com/share?" + tweetParams
-    // )
 
     printclear(acquire("share_content"), shareType === "image" ? text_mobile_share : text_share);
 
@@ -1626,18 +1617,123 @@ function do_share(copy, shareType) {
                 text: text_share,
             });
         } else if (shareType === "image") {
+            var size = 32;
+            var padding = size / 16;
+            var fontScale = 0.75;
             const canvas = document.querySelector("#canvas");
+            canvas.width = (size + padding) * 11 - padding
+            canvas.height = (size + padding) * (l1 + 1 + l2 + 1 + 4) - padding;
             const ctx = canvas.getContext("2d");
             ctx.fillStyle = "black";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.font = '16px monospace';
-            ctx.textAlign = "center";
-            ctx.textBaseline = "top";
-            ctx.fillStyle = "#ffffff";
-            var canvas_lines = canvas_text.split("\n");
 
-            for (var i = 0 ; i < canvas_lines.length; i++) {
-                ctx.fillText(canvas_lines[i], canvas.width / 2, 30 + i * 20);
+            // draw words 1 + 2
+            var x = 0;
+            var y = 0;
+            for (var i = 0; i <= l1; i++) {
+                var emojiStr = share[0][i];
+                x = 0;
+                while (emojiStr) {
+                    var pair = get_next_color_from_emojis(emojiStr)
+                    var color = pair[0]
+                    emojiStr = pair[1]
+                    ctx.fillStyle = color;
+                    ctx.fillRect(x * (size + padding), y * (size + padding), size, size);
+                    x++;
+                }
+
+                emojiStr = share[1][i];
+                x = 6;
+                while (emojiStr) {
+                    var pair = get_next_color_from_emojis(emojiStr)
+                    var color = pair[0]
+                    emojiStr = pair[1]
+                    ctx.fillStyle = color;
+                    ctx.fillRect(x * (size + padding), y * (size + padding), size, size);
+                    x++;
+                }
+                y++;
+            }
+
+            // draw middle text
+            ctx.font = size * fontScale + 'px Arial';
+            textPadding = (size - size * fontScale) / 2
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = "#ffffff";
+
+            // Need to add extra "padding" to text vertical position since it is not perfectly centered.
+            if (daily_mode) {
+                ctx.fillText("Daily Quordle #" + seed.toString(10), canvas.width / 2, y * (size + padding) + (size / 2) + padding, canvas.width - textPadding * 2);
+            } else {
+                ctx.fillText("Quordle", canvas.width / 2, y * (size + padding) + (size / 2) + padding, canvas.width - textPadding * 2);
+            }
+            y++;
+            for (var row = 0; row < 2; row++) {
+                for (var i = 0; i < 2; i++) {
+                    ctx.fillStyle = answer_correct[i + row * 2] >= 0 ? "#00a6ed" : "#f8312f";
+                    var dir = (i * 2 - 1)
+                    var xTopCenter = canvas.width / 2 + dir * (padding / 2) + dir * (size / 2)
+                    ctx.fillRect(xTopCenter - size / 2, y * (size + padding), size, size);
+                    if (answer_correct[i + row * 2] >= 0) {
+                        ctx.textAlign = "center";
+                        ctx.fillStyle = "#ffffff";
+                        ctx.fillText(
+                            answer_correct[i + row * 2] + 1,
+                            xTopCenter,
+                            y * (size + padding) + (size / 2) + padding,
+                            size
+                        );
+                    }
+                }
+                if (free_mode && shouldShowWords) {
+                    ctx.textAlign = "right";
+                    ctx.fillStyle = "#ffffff";
+                    ctx.fillText(
+                        answer[0 + row * 2].toUpperCase(),
+                        canvas.width / 2 - padding / 2 - size - textPadding,
+                        y * (size + padding) + (size / 2) + padding,
+                        canvas.width / 2 - padding - size - textPadding * 2
+                    )
+                    ctx.textAlign = "left";
+                    ctx.fillText(
+                        answer[1 + row * 2].toUpperCase(),
+                        canvas.width / 2 + padding / 2 + size + textPadding,
+                        y * (size + padding) + (size / 2) + padding,
+                        canvas.width / 2 - padding - size - textPadding * 2
+                    )
+                }
+                y++;
+            }
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#ffffff";
+            ctx.fillText("quordle.com", canvas.width / 2, y * (size + padding) + (size / 2), canvas.width);
+            y++;
+
+            // draw words 3 + 4
+            for (var i = 0; i <= l2; i++) {
+                var emojiStr = share[2][i];
+                x = 0;
+                while (emojiStr) {
+                    var pair = get_next_color_from_emojis(emojiStr)
+                    var color = pair[0]
+                    emojiStr = pair[1]
+                    ctx.fillStyle = color;
+                    ctx.fillRect(x * (size + padding), y * (size + padding), size, size);
+                    x++;
+                }
+
+                emojiStr = share[3][i];
+                x = 6;
+                while (emojiStr) {
+                    var pair = get_next_color_from_emojis(emojiStr)
+                    var color = pair[0]
+                    emojiStr = pair[1]
+                    ctx.fillStyle = color;
+                    ctx.fillRect(x * (size + padding), y * (size + padding), size, size);
+                    x++;
+                }
+                y++;
             }
 
             canvas.toBlob(function(blob) {
