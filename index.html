@@ -734,23 +734,26 @@ table {
         </div>
         <div id="post_game" style="">
             <table width="100%">
-                <tr height="25%">
-                    <td rowspan=4 style="width:50%;">
+                <tr height="20%">
+                    <td rowspan=5 style="width:50%;">
                         <textarea class="box" style="width:100%; border: 1px solid;overflow:auto;resize:none;" rows=25 id="share_content">test</textarea>
                     </td>
-                    <td style="font-size:75%; width:50%; text-align:center;" id="answer">&nbsp;</td>
+                    <td style="font-size:75%; width:50%; text-align:center; vertical-align:bottom;" id="answer12">&nbsp;</td>
                 </tr>
-                <tr height="25%">
+                <tr height="20%">
+                    <td style="font-size:75%; width:50%; text-align:center; vertical-align:top;" id="answer34">&nbsp;</td>
+                </tr>
+                <tr height="20%">
                     <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;visibility:hidden;padding:8px;" id="share">
                         share
                     </td>
                 </tr>
-                <tr height="25%">
+                <tr height="20%">
                     <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;visibility:hidden;padding:8px;" id="share_image">
                         share as image (twitter)
                     </td>
                 </tr>
-                <tr height="25%">
+                <tr height="20%">
                     <td class="box" style="border: none; border-style: double;font-size:50%;width:50%;cursor:pointer;padding:8px;" id="share_clipboard">
                         copy to clipboard
                     </td>
@@ -1588,8 +1591,8 @@ function roundRect(ctx, x, y, width, height, radius) {
 }
 
 function do_share(copy, shareType) {
-    var real_answer = answer[0].toUpperCase() + " - " + answer[1].toUpperCase() + "\n" + answer[2].toUpperCase() + " - " + answer[3].toUpperCase();
-    printclear(acquire("answer"), real_answer);
+    printclear(acquire("answer12"), answer[0].toUpperCase() + " - " + answer[1].toUpperCase());
+    printclear(acquire("answer34"), answer[2].toUpperCase() + " - " + answer[3].toUpperCase());
 
     var shouldShowWords = line >= 9 || (answer_correct[0] >= 0 && answer_correct[1] >= 0 && answer_correct[2] >= 0 && answer_correct[3] >= 0);
     if (daily_mode) {
