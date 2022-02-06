@@ -56,6 +56,12 @@ a {
     color: white;
 }
 
+.body-ios {
+    height: -moz-calc(100% - 25px) !important;
+    height: -webkit-calc(100% - 25px) !important;
+    height: calc(100% - 25px) !important;
+    bottom: 25px;
+}
 
 .button {
     width: var(--boxsize);
@@ -948,9 +954,14 @@ function iOS() {
   || (navigator.userAgent.toLowerCase().includes("mac") && "ontouchend" in document)
 }
 
+isInWebAppiOS = (window.navigator.standalone === true);
+isInWebAppChrome = (window.matchMedia('(display-mode: standalone)').matches);
+
+if (iOS() && isInWebAppiOS) {
+    acquire("body").classList.add("body-ios");
+}
+
 function canGoFullscreen() {
-    isInWebAppiOS = (window.navigator.standalone === true);
-    isInWebAppChrome = (window.matchMedia('(display-mode: standalone)').matches);
     return !iOS() && !isInWebAppiOS && !isInWebAppChrome && (document.body.requestFullscreen || document.body.mozRequestFullScreen || document.body.webkitRequestFullScreen || document.body.msRequestFullscreen);
 }
 
