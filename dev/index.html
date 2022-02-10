@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quordle</title>
+    <meta
+      name="description"
+      content="Put your skills to the test and solve four Wordles at once! You have 9 guesses to solve all four words. A new Quordle available each day to solve."
+    />
+    <meta
+      name="keywords"
+      content="Quordle, Dordle, Wordle, word game, puzzle, brain teaser"
+    />
+    <meta name="author" content="Freddie Meyer" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+
+    <!-- FB Meta Tags -->
+    <meta property="og:url" content="https://www.quordle.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Quordle" />
+    <meta
+      property="og:description"
+      content="Put your skills to the test and solve four Wordles at once! You have 9 guesses to solve all four words. A new Quordle available each day to solve."
+    />
+    <meta
+      property="og:image"
+      content="https://www.quordle.com/assets/screenshot.png"
+    />
+    <meta property="og:image:width" content="802" />
+    <meta property="og:image:height" content="531" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="quordle.com" />
+
+    <meta name="theme-color" content="#181a1b" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="manifest" href="data:application/json;base64,ew0KICAic2hvcnRfbmFtZSI6ICJRdW9yZGxlIiwNCiAgIm5hbWUiOiAiUXVvcmRsZSIsDQogICJpY29ucyI6IFsNCiAgICB7DQogICAgICAic3JjIjogImZhdmljb24tNDgucG5nIiwNCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsDQogICAgICAic2l6ZXMiOiAiNDh4NDgiLA0KICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIg0KICAgIH0sDQogICAgew0KICAgICAgInNyYyI6ICJmYXZpY29uLTcyLnBuZyIsDQogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLA0KICAgICAgInNpemVzIjogIjcyeDcyIiwNCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSINCiAgICB9LA0KICAgIHsNCiAgICAgICJzcmMiOiAiZmF2aWNvbi05Ni5wbmciLA0KICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwNCiAgICAgICJzaXplcyI6ICI5Nng5NiIsDQogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiDQogICAgfSwNCiAgICB7DQogICAgICAic3JjIjogImZhdmljb24tMTI4LnBuZyIsDQogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLA0KICAgICAgInNpemVzIjogIjEyOHgxMjgiLA0KICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIg0KICAgIH0sDQogICAgew0KICAgICAgInNyYyI6ICJmYXZpY29uLTE0NC5wbmciLA0KICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwNCiAgICAgICJzaXplcyI6ICIxNDR4MTQ0IiwNCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSINCiAgICB9LA0KICAgIHsNCiAgICAgICJzcmMiOiAiZmF2aWNvbi0xNjgucG5nIiwNCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsDQogICAgICAic2l6ZXMiOiAiMTY4eDE2OCIsDQogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiDQogICAgfSwNCiAgICB7DQogICAgICAic3JjIjogImZhdmljb24tMTkyLnBuZyIsDQogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLA0KICAgICAgInNpemVzIjogIjE5MngxOTIiLA0KICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIg0KICAgIH0sDQogICAgew0KICAgICAgInNyYyI6ICJmYXZpY29uLTI1Ni5wbmciLA0KICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwNCiAgICAgICJzaXplcyI6ICIyNTZ4MjU2IiwNCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSINCiAgICB9LA0KICAgIHsNCiAgICAgICJzcmMiOiAiZmF2aWNvbi01MTIucG5nIiwNCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsDQogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsDQogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiDQogICAgfQ0KICBdLA0KICAic3RhcnRfdXJsIjogImh0dHBzOi8vd3d3LnF1b3JkbGUuY29tIiwNCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzE4MWExYiIsDQogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLA0KICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLA0KICAidGhlbWVfY29sb3IiOiAiIzE4MWExYiIsDQogICJkZXNjcmlwdGlvbiI6ICJQdXQgeW91ciBza2lsbHMgdG8gdGhlIHRlc3QgYW5kIHNvbHZlIGZvdXIgV29yZGxlcyBhdCBvbmNlISBZb3UgaGF2ZSA5IGd1ZXNzZXMgdG8gc29sdmUgYWxsIGZvdXIgd29yZHMuIEEgbmV3IFF1b3JkbGUgYXZhaWxhYmxlIGVhY2ggZGF5IHRvIHNvbHZlLiINCn0=" />
+    <link rel="shortcut icon" sizes="192x192" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAABhWlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw1AUhU9TpUUqDu0g4pChioMFURFHqWIRLJS2QqsOJi/9gyYNSYqLo+BacPBnserg4qyrg6sgCP6AODo5KbpIifclhRYxXni8j/PuObx3HyA0q0w1eyYAVbOMdCIu5vKrYuAVAnwII4gxiZl6MrOYhWd93VMv1V2MZ3n3/Vn9SsFkgE8knmO6YRFvEM9sWjrnfeIIK0sK8TnxuEEXJH7kuuzyG+eSwwLPjBjZ9DxxhFgsdbHcxaxsqMTTxFFF1ShfyLmscN7irFbrrH1P/sJQQVvJcJ3WMBJYQhIpiJBRRwVVWIjRrpFiIk3ncQ//kONPkUsmVwWMHAuoQYXk+MH/4PdszeLUpJsUigO9L7b9MQIEdoFWw7a/j227dQL4n4ErreOvNYHZT9IbHS16BAxsAxfXHU3eAy53gMEnXTIkR/LTEopF4P2MvikPhG+BvjV3bu1znD4AWZrV8g1wcAiMlih73ePdwe65/dvTnt8PPd5ykrXrozIAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfmAgETCSA6eeCSAAABnklEQVR42u3VsQ2AQAwEQZu2KIr0SyB1X/RDaFogs16aKeGk1WVVdTDmOl8jDDpMgABAACAAEAAIAAQAAgABgABAACAAEAAIAAQAAgABgABAACAAEAAIAAQAAgABgABAACAAEAAIAAQAAgABgABAACAAEAAIAAQAAgABgABAACAAEAAIAAQAAgABgABAACAABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAHAXxnP3WaY07GM4AFAACAAEAAIAAQAAgABgABAACAAEAAIAAQAAgABgABAACAAEAAIAAQAAgABgAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACQAAgABAACAAEAAIAAYAAQAAgABAACAAEAAIAAYAAQAAgANjBB4zxCZz5GF3vAAAAAElFTkSuQmCC" />
+    <link rel="shortcut icon" sizes="128x128" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAABhWlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw1AUhU9TpUUqDu0g4pChioMFURFHqWIRLJS2QqsOJi/9gyYNSYqLo+BacPBnserg4qyrg6sgCP6AODo5KbpIifclhRYxXni8j/PuObx3HyA0q0w1eyYAVbOMdCIu5vKrYuAVAnwII4gxiZl6MrOYhWd93VMv1V2MZ3n3/Vn9SsFkgE8knmO6YRFvEM9sWjrnfeIIK0sK8TnxuEEXJH7kuuzyG+eSwwLPjBjZ9DxxhFgsdbHcxaxsqMTTxFFF1ShfyLmscN7irFbrrH1P/sJQQVvJcJ3WMBJYQhIpiJBRRwVVWIjRrpFiIk3ncQ//kONPkUsmVwWMHAuoQYXk+MH/4PdszeLUpJsUigO9L7b9MQIEdoFWw7a/j227dQL4n4ErreOvNYHZT9IbHS16BAxsAxfXHU3eAy53gMEnXTIkR/LTEopF4P2MvikPhG+BvjV3bu1znD4AWZrV8g1wcAiMlih73ePdwe65/dvTnt8PPd5ykrXrozIAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfmAgETCQ1/prznAAABA0lEQVR42u3UMRGAUAxEwfvYQhQtEmjjCz+UQQR02XVwmTdZVdUZ7NifyfOzBQEgAASAABAAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAkAACAABIAAEgAAQAALgByv31ZMP0Dl9AASAABAAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAkAACAABIAAEgAAQAAJAAAiAr14UWAkcx73I0QAAAABJRU5ErkJggg==" />
+    <link rel="apple-touch-icon" sizes="128x128" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAABhWlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw1AUhU9TpUUqDu0g4pChioMFURFHqWIRLJS2QqsOJi/9gyYNSYqLo+BacPBnserg4qyrg6sgCP6AODo5KbpIifclhRYxXni8j/PuObx3HyA0q0w1eyYAVbOMdCIu5vKrYuAVAnwII4gxiZl6MrOYhWd93VMv1V2MZ3n3/Vn9SsFkgE8knmO6YRFvEM9sWjrnfeIIK0sK8TnxuEEXJH7kuuzyG+eSwwLPjBjZ9DxxhFgsdbHcxaxsqMTTxFFF1ShfyLmscN7irFbrrH1P/sJQQVvJcJ3WMBJYQhIpiJBRRwVVWIjRrpFiIk3ncQ//kONPkUsmVwWMHAuoQYXk+MH/4PdszeLUpJsUigO9L7b9MQIEdoFWw7a/j227dQL4n4ErreOvNYHZT9IbHS16BAxsAxfXHU3eAy53gMEnXTIkR/LTEopF4P2MvikPhG+BvjV3bu1znD4AWZrV8g1wcAiMlih73ePdwe65/dvTnt8PPd5ykrXrozIAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfmAgETCQ1/prznAAABA0lEQVR42u3UMRGAUAxEwfvYQhQtEmjjCz+UQQR02XVwmTdZVdUZ7NifyfOzBQEgAASAABAAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAkAACAABIAAEgAAQAALgByv31ZMP0Dl9AASAABAAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAkAACAABIAAEgAAQAAJAAAiAr14UWAkcx73I0QAAAABJRU5ErkJggg==" />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="128x128"
+      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAABhWlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw1AUhU9TpUUqDu0g4pChioMFURFHqWIRLJS2QqsOJi/9gyYNSYqLo+BacPBnserg4qyrg6sgCP6AODo5KbpIifclhRYxXni8j/PuObx3HyA0q0w1eyYAVbOMdCIu5vKrYuAVAnwII4gxiZl6MrOYhWd93VMv1V2MZ3n3/Vn9SsFkgE8knmO6YRFvEM9sWjrnfeIIK0sK8TnxuEEXJH7kuuzyG+eSwwLPjBjZ9DxxhFgsdbHcxaxsqMTTxFFF1ShfyLmscN7irFbrrH1P/sJQQVvJcJ3WMBJYQhIpiJBRRwVVWIjRrpFiIk3ncQ//kONPkUsmVwWMHAuoQYXk+MH/4PdszeLUpJsUigO9L7b9MQIEdoFWw7a/j227dQL4n4ErreOvNYHZT9IbHS16BAxsAxfXHU3eAy53gMEnXTIkR/LTEopF4P2MvikPhG+BvjV3bu1znD4AWZrV8g1wcAiMlih73ePdwe65/dvTnt8PPd5ykrXrozIAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfmAgETCQ1/prznAAABA0lEQVR42u3UMRGAUAxEwfvYQhQtEmjjCz+UQQR02XVwmTdZVdUZ7NifyfOzBQEgAASAABAAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAkAACAABIAAEgAAQAALgByv31ZMP0Dl9AASAABAAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAkAACAABIAAEgAAQAAJAAAgAASAABIAAEAACQAAIAAEgAASAABAAAkAACAABIAAEgAAQAAJAAAiAr14UWAkcx73I0QAAAABJRU5ErkJggg=="
+    />
+    <link rel="shortcut icon" type="image/x-icon" href="data:null;base64,AAABAAEAEBAAAAEAGABoAwAAFgAAACgAAAAQAAAAIAAAAAEAGAAAAAAAAAMAAAAAAAAAAAAAAAAAAAAAAACIzACIzACIzACIzACIzACIzACIzACIzAAAzP8AzP8AzP8AzP8AzP8AzP8AzP8AzP+IzACIzACIzACIzACIzACIzACIzACIzAAAzP8AzP8AzP8AzP8AzP8AzP8AzP8AzP+IzACIzACIzACIzACIzACIzACIzACIzAAAzP8AzP8AzP8AzP8AzP8AzP8AzP8AzP+IzACIzACIzACIzACIzACIzACIzACIzAAAzP8AzP8AzP8AzP8AzP8AzP8AzP8AzP+IzACIzACIzACIzACIzACIzACIzACIzAAAzP8AzP8AzP8AzP8AzP8AzP8AzP8AzP+IzACIzACIzACIzACIzACIzACIzACIzAAAzP8AzP8AzP8AzP8AzP8AzP8AzP8AzP+IzACIzACIzACIzACIzACIzACIzACIzAAAzP8AzP8AzP8AzP8AzP8AzP8AzP8AzP+IzACIzACIzACIzACIzACIzACIzACIzAAAzP8AzP8AzP8AzP8AzP8AzP8AzP8AzP+RkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGIzACIzACIzACIzACIzACIzACIzACIzACRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGIzACIzACIzACIzACIzACIzACIzACIzACRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGIzACIzACIzACIzACIzACIzACIzACIzACRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGIzACIzACIzACIzACIzACIzACIzACIzACRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGIzACIzACIzACIzACIzACIzACIzACIzACRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGIzACIzACIzACIzACIzACIzACIzACIzACRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGIzACIzACIzACIzACIzACIzACIzACIzACRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGIzACIzACIzACIzACIzACIzACIzACIzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JE1FCTKHM9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JE1FCTKHM9');
+    </script>
+    <script
+      src="https://js.sentry-cdn.com/cd8139814dd64a07af2a72fe40bed481.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      Sentry.onLoad(function() {
+        Sentry.init({
+          dsn: "https://cd8139814dd64a07af2a72fe40bed481@o1140342.ingest.sentry.io/6197424"
+        });
+      });
+    </script>
+    <script type="module" crossorigin src="/assets/index.9113d6c3.js"></script>
+    <link rel="modulepreload" href="/assets/vendor.b7055ded.js">
+    <link rel="stylesheet" href="/assets/index.dab3e4dd.css">
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    
+  </body>
+</html>
