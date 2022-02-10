@@ -62,11 +62,13 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      Sentry.onLoad(function() {
-        Sentry.init({
-          dsn: "https://cd8139814dd64a07af2a72fe40bed481@o1140342.ingest.sentry.io/6197424"
+      if (window.Sentry) {
+        Sentry.onLoad(function() {
+          Sentry.init({
+            dsn: "https://cd8139814dd64a07af2a72fe40bed481@o1140342.ingest.sentry.io/6197424"
+          });
         });
-      });
+      }
     </script>
     <script type="module" crossorigin src="/dev/assets/index.9113d6c3.js"></script>
     <link rel="modulepreload" href="/dev/assets/vendor.b7055ded.js">
