@@ -62,7 +62,7 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      if (window.Sentry && window.location.host.endsWith("quordle.com")) {
+      if (window.Sentry && window.location && window.location.host && window.location.host.endsWith("quordle.com")) {
         Sentry.onLoad(function() {
           Sentry.init({
             dsn: "https://cd8139814dd64a07af2a72fe40bed481@o1140342.ingest.sentry.io/6197424",
