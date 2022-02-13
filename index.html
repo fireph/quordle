@@ -68,7 +68,7 @@
           Sentry.init({
             dsn: quordleInHost ? "https://cd8139814dd64a07af2a72fe40bed481@o1140342.ingest.sentry.io/6197424" : null,
             environment: window.location.host.startsWith("dev.") ? "dev" : "production",
-            ignoreErrors: ["ResizeObserver", "safari-extension", "safari-web-extension", "instantSearchSDKJSBridgeClearHighlight"]
+            ignoreErrors: ["ResizeObserver", "safari-extension", "safari-web-extension", "instantSearchSDKJSBridgeClearHighlight", "webkitExitFullScreen"]
           });
         });
       }
