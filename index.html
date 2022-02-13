@@ -62,18 +62,19 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      if (window.Sentry && window.location && window.location.host && window.location.host.endsWith("quordle.com")) {
+      var quordleInHost = window.location && window.location.host && window.location.host.endsWith("quordle.com")
+      if (window.Sentry) {
         Sentry.onLoad(function() {
           Sentry.init({
-            dsn: "https://cd8139814dd64a07af2a72fe40bed481@o1140342.ingest.sentry.io/6197424",
+            dsn: quordleInHost ? "https://cd8139814dd64a07af2a72fe40bed481@o1140342.ingest.sentry.io/6197424" : null,
             environment: window.location.host.startsWith("dev.") ? "dev" : "production",
             ignoreErrors: ["ResizeObserver", "safari-extension", "safari-web-extension"]
           });
         });
       }
     </script>
-    <script type="module" crossorigin src="/assets/index.60135a03.js"></script>
-    <link rel="modulepreload" href="/assets/vendor.2ba7b93a.js">
+    <script type="module" crossorigin src="/assets/index.58bc23d6.js"></script>
+    <link rel="modulepreload" href="/assets/vendor.f4681d36.js">
     <link rel="stylesheet" href="/assets/index.068bc6ad.css">
   </head>
   <body>
