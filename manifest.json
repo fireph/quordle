@@ -57,10 +57,10 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "https://www.quordle.com",
-  "background_color": "#181a1b",
+  "start_url": "/",
+  "background_color": "#1F2937",
   "display": "standalone",
   "orientation": "portrait",
-  "theme_color": "#181a1b",
+  "theme_color": "#111827",
   "description": "Put your skills to the test and solve four Wordles at once! You have 9 guesses to solve all four words. A new Quordle available each day to solve."
 }
