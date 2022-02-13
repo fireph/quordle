@@ -67,7 +67,7 @@
           Sentry.init({
             dsn: "https://cd8139814dd64a07af2a72fe40bed481@o1140342.ingest.sentry.io/6197424",
             environment: window.location.host.startsWith("dev.") ? "dev" : "production",
-            ignoreErrors: ["ResizeObserver", "safari-web-extension"]
+            ignoreErrors: ["ResizeObserver", "safari-extension", "safari-web-extension"]
           });
         });
       }
