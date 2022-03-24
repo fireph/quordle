@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.quordle.com</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://es.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fr.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://it.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://nl.quordle.com"/>
+  </url>
+  <url>
+    <loc>https://es.quordle.com</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://es.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fr.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://it.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://nl.quordle.com"/>
+  </url>
+  <url>
+    <loc>https://fr.quordle.com</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://es.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fr.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://it.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://nl.quordle.com"/>
+  </url>
+  <url>
+    <loc>https://it.quordle.com</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://es.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fr.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://it.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://nl.quordle.com"/>
+  </url>
+  <url>
+    <loc>https://nl.quordle.com</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://es.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fr.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://it.quordle.com"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://nl.quordle.com"/>
+  </url>
+</urlset>
